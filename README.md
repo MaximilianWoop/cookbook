@@ -1,3 +1,8 @@
+# Pre needed
+
+node.js 
+java sdk
+
 # cookbook
 
 ## Project setup
