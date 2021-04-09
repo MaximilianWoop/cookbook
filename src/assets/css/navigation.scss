@@ -1,0 +1,45 @@
+.v-toolbar{
+    color: whitesmoke;
+    .v-toolbar__content
+    {
+        background: rgba(2, 76, 140, 1);
+        color: whitesmoke;
+        padding:12px;
+        padding-left: 10vw;
+        padding-right:  10vw;
+    }    
+    .v-icon{
+        color: whitesmoke;
+    }
+    
+    .v-btn {
+        max-width: 28px;
+        margin-right: 5px;
+        color: whitesmoke;
+        
+    }
+    .v-btn__content{
+        max-width: 28px;
+        color: whitesmoke;
+    }    
+}
+.v-navigation-drawer__content{
+    background: rgba(2, 76, 140, 1); 
+    color: whitesmoke;
+    .v-list-item__content{
+        .nav-drawer-content-row{
+            margin-top: 0px;
+            .nav-drawer-content-row-col{
+                padding: 0px 0px 0px 12px;
+                .nav-drawer-content-username{
+                    margin-left: 0px;
+                    margin-bottom: 50px;
+                    font-size: large;
+                }
+            }
+        }        
+    }
+    .v-list-item__title{
+        margin-left: 10px;
+    }
+}
