@@ -8,6 +8,7 @@ export default new Vuex.Store({
     state:{
         recipes:[],
         ingredients:[],
+        tags:[],
     },
     mutations:{
         setRecipe(state, recipe){
@@ -15,6 +16,9 @@ export default new Vuex.Store({
         },
         setIngredient(state, ingredient){
             state.ingredients.push(ingredient);
+        },
+        setTag(state, tag){
+            state.tags.push(tag);
         },
         deleteItem(state, recipe){
             helper.deleteRecipe();
@@ -30,7 +34,18 @@ export default new Vuex.Store({
         setIngredient: ({commit, state}, ingredient) =>{
             commit('setIngredient', ingredient);
             return state.ingredient;
+        },
+        setTag: ({commit, state}, tag) =>{
+            commit('setTag', tag);
+            return state.tag;
         }
     },
-    getters:{},
+    getters:{
+        ingredientLength: state => {
+            return Object.keys(state.ingredients).length;
+        },
+        recipeLength: state => {
+            return state.recipes.length;
+        }
+    },
 })

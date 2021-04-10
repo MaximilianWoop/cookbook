@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        Add ingredient
+        
     </div>            
 </template>
 
@@ -25,4 +25,4 @@ var vueModel = {
     components:{},
 }
 export default vueModel
-</script>
+ </script>

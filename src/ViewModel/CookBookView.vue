@@ -18,13 +18,13 @@
                             </v-row>
                             <v-row no-gutters>
                                 <v-col>
-                                    <v-text-field label="Filter"/>
+                                    <v-text-field label="Name"/>
                                 </v-col>
                                 <v-col>
-                                    <v-text-field label="Filter"/>
+                                    <v-text-field label="Tags"/>
                                 </v-col>
                                 <v-col>
-                                    <v-text-field label="Filter"/>
+                                    <v-text-field label="Dauer"/>
                                 </v-col>
                             </v-row>
                         </div>                        
