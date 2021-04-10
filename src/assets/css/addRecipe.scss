@@ -9,10 +9,22 @@
             padding: 5px;
         }
     }
-    
+    .ingredient-col-center{
+        display:flex;
+        align-items: center;
+    }
     .row{
-        .col{
+        .save-button-right{
+            text-align: right;
+        }
+        .button-col-width{
             width: 50%;
+        }
+        .col{
+            // width: 50%;
+            // .add-Recipe-Tag-Template-From-col{
+            //     width:100%;
+            // }
             .saveButton{
                 color: whitesmoke;
             }
