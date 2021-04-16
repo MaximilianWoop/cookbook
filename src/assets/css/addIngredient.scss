@@ -1,5 +1,5 @@
-.addRecipeCard{
-    width:100%;
+.addIngredientCard{
+    width: 100%;
     .v-card__title{
         padding: 5px;
     }
@@ -8,11 +8,11 @@
         .v-expansion-panels{
             padding: 5px;
         }
-        .save-button-right{
-            text-align: right;
-        }
         .button-col-width{
             width: 50%;
+        }
+        .save-button-right{
+            text-align: right;
         }
         .col{
             .saveButton{
@@ -22,9 +22,5 @@
                 color: whitesmoke;
             }
         }
-    }
-    .ingredient-col-center{
-        display:flex;
-        align-items: center;
     }
 }

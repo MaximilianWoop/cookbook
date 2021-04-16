@@ -1,7 +1,11 @@
 //CRUD functions
 async function createRecipe(recipe){
-    console.log("create");
-    console.log(recipe);
+    var request = new XMLHttpRequest();
+    request.open('POST','http://cookbook.ryotecx.de/api.php/recipe');
+    request.setRequestHeader("Content-Type", "application/json");
+    var recipeJson = JSON.stringify(recipe);
+    console.log(recipeJson);
+    request.send(recipeJson);    
 }
 async function updateRecipe(recipe){
     console.log("update");
@@ -14,29 +18,40 @@ async function deleteRecipe(id){
 
 //Get data 
 async function getRecipesFromURL(ref){
-    var request = new XMLHttpRequest();
-    request.open('GET','http://cookbook.ryotecx.de/api.php/recipe',true);
-    request.onload = async function(){
-        var data = JSON.parse(this.response);
-        data.forEach((recipe) => {            
+    return await fetch('http://cookbook.ryotecx.de/api.php/recipe')
+        .then(response => response.json())
+        .then(data => data.forEach((recipe) => {  
             ref.$store.dispatch('setRecipe',recipe);
-        });  
-    }
-    request.send();
-} 
+        }));
+}
 
-// async function getIngredientsFromURL(ref){
-//     var request = new XMLHttpRequest();
-//     request.open('GET','http://cookbook.ryotecx.de/api.php/ingredient',true);
-//     request.onload = function(){
-//         var data = JSON.parse(this.response);
-//         data.forEach((ingredient) => {            
-//             ref.$store.dispatch('setIngredient',ingredient);
+// const axios = require('axios').default;
+// async function getRecipesFromURL(ref){
+//     axios.get('http://cookbook.ryotecx.de/api.php/recipe')
+//     .then(response => {
+//         var data = JSON.stringify(response.data);
+//         data = JSON.parse(data);
+//         data.forEach((recipe) => {       
+//             ref.$store.dispatch('setRecipe',recipe);
 //         }); 
-//         console.log(ref.$store.state.ingredients.length);          
-//     };
+//     })
+//     .catch(err => {
+//         // Handle Error Here
+//         console.error(err);
+//     });
+// } 
+
+// async function getRecipesFromURL(ref){
+//     var request = new XMLHttpRequest();
+//     request.open('GET','http://cookbook.ryotecx.de/api.php/recipe',true);
+//     request.onload = async function(){
+//         var data = JSON.parse(this.response);
+//         data.forEach((recipe) => {            
+//             ref.$store.dispatch('setRecipe',recipe);
+//         });  
+//     }
 //     request.send();
-// }
+// } 
 
 const axios = require('axios').default;
 async function getIngredientsFromURL(ref){

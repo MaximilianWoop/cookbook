@@ -30,7 +30,9 @@
                         </div>                        
                         <v-list three-line>
                             <template v-for="item in recipes">
-                                <v-list-item :key="item.name">
+                                <v-list-item 
+                                    :key="item.name"
+                                    :href="'/RecipeDetailView?recipeId='+item.recipeID">
                                     <v-list-item-content>
                                         <v-card outlined>
                                             <v-row>    
@@ -110,7 +112,7 @@ var vueModel = {
         if(this.$store.state.recipes.length === 0)
         {
             await helper.getRecipesFromURL(this);
-        }              
+        }                 
     },
     computed:{
         recipes(){

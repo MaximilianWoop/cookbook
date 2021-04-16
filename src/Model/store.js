@@ -46,6 +46,9 @@ export default new Vuex.Store({
         },
         recipeLength: state => {
             return state.recipes.length;
+        },
+        getSelectedRecipe: (state) => (id) => {
+            return state.recipes.find(recipe => recipe.recipeID == id)
         }
     },
 })

@@ -58,8 +58,8 @@ export default {
             MenuPoints: [
                 {title: 'Übersicht', icon: 'mdi-view-dashboard', route: '/cookbookview'},
                 {title: 'Mein Account', icon: 'mdi-account', route: ''},   
-                {title: 'Rezept hinzufügen', icon: 'mdi-account', route: ''},
-                {title: 'Zutat hinzufügen', icon: 'mdi-account', route: ''}, 
+                {title: 'Rezept hinzufügen', icon: 'mdi-account', route: '/AddRecipeView'},
+                {title: 'Zutat hinzufügen', icon: 'mdi-account', route: '/AddIngredientView'}, 
                 {title: 'Einstellungen', icon: 'mdi-marker', route: ''},             
             ]
         }

@@ -1,0 +1,15 @@
+.recipeDetailCard{
+    width: 100%;
+    .v-card__title{
+        padding: 5px;
+    }
+    .row{
+        margin: auto;
+        .v-expansion-panels{
+            padding: 5px;
+        }
+        .right{
+            float: right;
+        }
+    }
+}
