@@ -1,5 +1,5 @@
 <template>
-    <div class="container" data-app>
+    <div data-app>
         <v-row>
             <v-col>
                 <v-row>
@@ -130,8 +130,12 @@
                                 <v-expansion-panel>
                                     <v-expansion-panel-header>Bilder</v-expansion-panel-header>
                                     <v-expansion-panel-content>
-                                        <v-img v-bind:src="'data:image/jpeg;base64,'+ images[0].image"/>
-                                        <!-- <ImageGallery :items="images"/> -->
+                                        <div v-for="(item, index) in this.images" :key="index">
+                                            <v-row> 
+                                                <v-img v-bind:src="'data:image/jpeg;base64,'+ item.image"/>
+                                                <!-- <ImageGallery :items="images"/> -->
+                                            </v-row>
+                                        </div>
                                     </v-expansion-panel-content>                                    
                                 </v-expansion-panel>                                
                             </v-expansion-panels>
@@ -146,8 +150,7 @@
 <script defer>
 
 import helper from '@/Helper/dataController'
-import ImageGallery from '@/ViewModel/Elements/Images/imageGallery'
-// import urlHelper from '@/Helper/urlHelper'
+import ImageGallery from '@/ViewModel/Elements/imageGallery'
 
 var vueModel = {
     data(){
@@ -232,16 +235,8 @@ var vueModel = {
             }                
         }
     },
-    computed:{
-        // recipes(){
-        //     return this.$store.state.recipes;
-        // }
-    },
-    methods:{
-        // loadIngredients(){
-        //     console.log("load ingredients");
-        // }
-    },
+    computed:{},
+    methods:{},
     props:[],
     components:{
         'ImageGallery':ImageGallery,

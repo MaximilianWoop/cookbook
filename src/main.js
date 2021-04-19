@@ -4,7 +4,7 @@ import vuetify from './plugins/vuetify'
 import store from './Model/store'
 import router from './router'
 
-import '@/assets/css/mainViewCss.scss'
+import '@/assets/css/main.scss'
 import '@/assets/css/cookbook.scss'
 import '@/assets/css/button.scss'
 import '@/assets/css/font.scss'
@@ -15,6 +15,8 @@ import '@/assets/css/addRecipe.scss'
 import '@/assets/css/addIngredient.scss'
 import '@/assets/css/detailRecipe.scss'
 import '@/assets/css/detailIngredient.scss'
+import '@/assets/css/imageGallery.scss'
+
 
 Vue.config.productionTip = false
 Vue.config.debug = false;

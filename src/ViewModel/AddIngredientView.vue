@@ -1,5 +1,5 @@
 <template>
-    <div class="container" data-app>
+    <div data-app>
         <v-row>
             <v-col>
                 <v-row no gutters>
@@ -14,17 +14,10 @@
                                         id="ingredientNameId"
                                         outlined/>
                                 </v-col>
-                                <v-col>
-                                    <v-text-field 
-                                        label="Menge" 
-                                        v-model="ingredientPortion"
-                                        id="ingredientPortionId"
-                                        outlined
-                                        type="number"/>
-                                </v-col>
                                 <v-col align="center">
                                     <v-select
                                         :items="measurements"
+                                        v-model="ingredientMeasurement"
                                         label="Einheit"
                                         id="ingredientMeasurementId"
                                         dense
@@ -111,7 +104,7 @@
 <script defer>
 
 import helper from '@/Helper/dataController'
-import ImageGallery from '@/ViewModel/Elements/Images/imageGallery'
+import ImageGallery from '@/ViewModel/Elements/imageGallery'
 
 function setCamSource(ref, stream){
     document.querySelector('video').srcObject = stream;
@@ -139,7 +132,6 @@ var vueModel = {
                 var ingredient = new Object();
                 //general
                 ingredient.name = this.ingredientName;
-                ingredient.protion = this.ingredientPortion;
                 ingredient.measurement = this.ingredientMeasurement;
                 //images
                 var images = [];
@@ -148,7 +140,7 @@ var vueModel = {
                     images[imageCounter] = new Object();  
                     var temp = this.imageItems[imageCounter].image;  
                     temp = temp.substring(23);       
-                    images[imageCounter] = temp;
+                    images[imageCounter].image = temp;
                 } 
                 ingredient.images = images;
                 //create ingredient

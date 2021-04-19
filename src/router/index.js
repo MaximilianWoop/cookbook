@@ -2,8 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import SignInView from '../Views/SignInView.vue'
 import CookBookView from '../Views/CookBookView.vue'
-import RecipeDetailView from '../Views/RecipeDetailView.vue'
-import IngredientDetailView from '../Views/IngredientDetailView.vue'
+import RecipeDetailView from '../Views/DetailRecipeView.vue'
+import IngredientDetailView from '../Views/DetailIngredientView.vue'
 import AddRecipeView from '../Views/AddRecipeView.vue'
 import AddIngredientView from '../Views/AddIngredientView.vue'
 
@@ -21,13 +21,13 @@ const routes = [
     component: CookBookView,
   },
   {
-    path: '/RecipeDetailView',
-    name: 'RecipeDetailView',
+    path: '/DetailRecipeView',
+    name: 'DetailRecipeView',
     component: RecipeDetailView
   },
   {
-    path: '/IngredientDetailView',
-    name: 'IngredientDetailView',
+    path: '/DetailIngredientView',
+    name: 'DetailIngredientView',
     component: IngredientDetailView
   },
   {

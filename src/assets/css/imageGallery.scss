@@ -1,0 +1,66 @@
+.imageGallery-Card{
+    .imageGallery-toolbar{
+        color: whitesmoke;
+        .v-toolbar__content
+        {
+            background: rgba(2, 76, 140, 1);
+            color: whitesmoke;
+            padding:12px;
+            .row{
+                display: contents;
+                .addImage-col{
+                    min-width: 50%;
+                    float: left; 
+                }
+                .btn-col{
+                    padding: 0px;
+                    width: 50px;
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: center;  
+                    .v-input{
+                        justify-content: flex-end;
+                    }      
+                    .v-btn{
+                        margin: 0px;
+                    }          
+                }
+            }
+        }    
+        .v-icon{
+            color: whitesmoke;
+        }
+        
+        .v-btn {
+            max-width: 28px;
+            margin-right: 5px;
+            color: whitesmoke;
+            
+        }
+        .v-btn__content{
+            max-width: 28px;
+            color: whitesmoke;
+        }    
+    }
+    .imageGallery-container{
+        background:black
+    }
+}
+
+.cam-Dialog{
+    margin-left: 2%;
+    margin-right: 2%;
+    width: auto;
+    height: 10%;
+    .btn-col{
+        display: flex;
+        justify-content: center;
+        align-items: center;  
+        .v-input{
+            justify-content: center;
+        }      
+        .v-btn{
+            margin: 0px;
+        }          
+    }
+}

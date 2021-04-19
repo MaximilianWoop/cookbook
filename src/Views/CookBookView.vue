@@ -8,7 +8,7 @@
 <script>
 
 import CookBookView from '@/ViewModel/CookBookView.vue'
-import NavigationBar from '@/ViewModel/Navigation/NavigationBar.vue'
+import NavigationBar from '@/ViewModel/NavigationBar.vue'
 
 export default {
     components:{

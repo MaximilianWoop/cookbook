@@ -1,5 +1,5 @@
 <template>
-    <div class="Arial">
+    <div class="nav-bar">
         <!-- Header -->
         <v-row>
             <v-col>
@@ -8,8 +8,8 @@
                         <v-app-bar-nav-icon @click="drawer = true" large/>
                         <v-toolbar-title class="h1">Kochbuch</v-toolbar-title>
                         <v-spacer></v-spacer>
-                         <v-btn icon>
-                            <v-icon>mdi-magnify</v-icon>
+                        <v-btn icon href="/addRecipeView" style="float:right">
+                            <v-icon>mdi-plus</v-icon>
                         </v-btn>
                     </v-toolbar>
                 </v-card>
@@ -56,11 +56,11 @@ export default {
             drawer: false,
             mini: false,
             MenuPoints: [
-                {title: 'Übersicht', icon: 'mdi-view-dashboard', route: '/cookbookview'},
+                {title: 'Übersicht', icon: 'mdi-clipboard-list-outline', route: '/cookbookview'},
                 {title: 'Mein Account', icon: 'mdi-account', route: ''},   
-                {title: 'Rezept hinzufügen', icon: 'mdi-account', route: '/AddRecipeView'},
-                {title: 'Zutat hinzufügen', icon: 'mdi-account', route: '/AddIngredientView'}, 
-                {title: 'Einstellungen', icon: 'mdi-marker', route: ''},             
+                {title: 'Rezept hinzufügen', icon: 'mdi-notebook-edit-outline', route: '/AddRecipeView'},
+                {title: 'Zutat hinzufügen', icon: 'mdi-bottle-tonic-plus-outline', route: '/AddIngredientView'}, 
+                {title: 'Einstellungen', icon: 'mdi-cog', route: ''},             
             ]
         }
     }

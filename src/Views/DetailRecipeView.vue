@@ -7,8 +7,8 @@
 
 <script>
 
-import AddRecipeView from '@/ViewModel/DetailViews/RecipeDetailView.vue'
-import NavigationBar from '@/ViewModel/Navigation/NavigationBar.vue'
+import AddRecipeView from '@/ViewModel/DetailRecipeView.vue'
+import NavigationBar from '@/ViewModel/NavigationBar.vue'
 
 export default {
     components:{

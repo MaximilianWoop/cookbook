@@ -1,5 +1,5 @@
 <template>
-  <div class="mainFont" style="background: whitesmoke;">    
+  <div class="mainFont container">    
     <router-link to="/"></router-link>
     <router-view/>
   </div>
