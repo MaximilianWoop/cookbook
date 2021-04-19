@@ -61,47 +61,49 @@
                                         <template>
                                             <form id="addRecipeIngredientTemplateForm">
                                                 <v-row>
-                                                    <div v-for="(ingredientInput,index) in ingredientsArray" :key=index style="width:100%">
+                                                    <div style="width:100%">
                                                         <v-card>
-                                                            <v-col class="ingredient-col-center">
-                                                                <v-autocomplete
-                                                                    v-model="ingredientInput.name"                                            
-                                                                    :items="ingredients"   
-                                                                    class="add-Recipe-Ingredient-Name" 
-                                                                    :name="ingredientNameId" 
-                                                                    item-text="name"                                       
-                                                                    cache-items
-                                                                    flat
-                                                                    return-object
-                                                                    hide-no-data
-                                                                    @click="addIngredientTemplate(ingredientInput, ingredientsArray)"
-                                                                    hide-details
-                                                                    label="Zutaten"
-                                                                    solo-inverted/>
-                                                            </v-col>
                                                             <v-col>
-                                                                <v-text-field 
-                                                                    label="Menge" 
-                                                                    :name="ingredientPortionId"
-                                                                    type="number"
-                                                                    class="add-Recipe-Ingredient-Portion"/>
+                                                                <v-card>
+                                                                    <v-data-table
+                                                                        :headers="headers"
+                                                                        :items="listOfSelecetIngredient"
+                                                                        :items-per-page="10"
+                                                                        class="elevation-1">                                                                        
+                                                                    </v-data-table>
+                                                                </v-card>                                                                
                                                             </v-col>
-                                                            <v-col align="center">
-                                                                <!-- <v-select
-                                                                    :items="ingredientsUnit"
-                                                                    :name="ingredientUnitId"
-                                                                    label="Einheit"
-                                                                    class="add-Recipe-Ingredient-Unit"
-                                                                    dense
-                                                                    solo/> -->
-                                                                <!-- <v-text-field  
-                                                                    :value="ingredientInput.name"
-                                                                    label="Einheit" 
-                                                                    :name="ingredientDurationId"
-                                                                    class="add-Recipe-Ingredient-Unit"
-                                                                    outlined
-                                                                    readonly/>                                                                     -->
-                                                            </v-col>
+                                                            <v-card>
+                                                                <v-col class="ingredient-col-center">                                                                
+                                                                    <v-autocomplete
+                                                                        label="Zutaten"                                   
+                                                                        :items="ingredients"   
+                                                                        item-text="name" 
+                                                                        @input="handelInputIngredient"
+                                                                        return-object  
+                                                                        v-model="selectIngredient"  
+                                                                        id="ingredientNameId"                                                                       
+                                                                        />                                                                                                                                    
+                                                                </v-col>
+                                                                <v-col>
+                                                                    <v-text-field 
+                                                                        label="Menge" 
+                                                                        id="ingredientPortionId"
+                                                                        type="number"/>
+                                                                </v-col>
+                                                                <v-col align="center">
+                                                                    <v-text-field  
+                                                                        :value="selectIngredient.measurement"
+                                                                        item.name = "name"
+                                                                        label="Einheit" 
+                                                                        id="ingredientDurationId"
+                                                                        outlined
+                                                                        readonly/>                                                                    
+                                                                </v-col>
+                                                                <v-col>
+                                                                    <v-btn @click="addIngredientToList">Add</v-btn>
+                                                                </v-col>
+                                                            </v-card>
                                                         </v-card>
                                                     </div>
                                                 </v-row>
@@ -229,7 +231,13 @@ function setCamSource(ref, stream){
 var vueModel = {
     data(){
         return{
-            selected: '',
+            //Datatable
+            headers: [
+                { text: 'Index', value: 'ingredientID' },
+                { text: 'Name', value: 'name' },
+                { text: 'Menge', value: 'portion' },
+                { text: 'Einheit', value: 'measurement' },
+            ],
             // general
             name: '',
             duration: '',
@@ -239,13 +247,9 @@ var vueModel = {
             descriptionRules: [v => v.length <= 60000 || 'Maximale Zeichenanzahl ist 60000'],
             tagCounter: 0,
             // ingredients
-            selectIngredient: null,
-            loadingIngredients: false,
+            selectIngredient: {},
             ingredients: [],
-            searchIngredient: null,
-            ingredientNameId: 'ingredientNameObjects',
-            ingredientPortionId: 'ingredientPortionObjects',
-            ingredientUnitId: 'ingredientUnitObjects',
+            listOfSelecetIngredient: [],
             //tags
             selectTag: null,
             loadingTags: false,
@@ -259,9 +263,6 @@ var vueModel = {
             //generator
             ingredientsArray: [{}],
             tagsArray: [{}],
-            //menu
-            ingredientsUnit: ['STK','EL','TL','g','KG','ml','L'],
-            offset: true,
         }
     },
     async mounted(){
@@ -286,6 +287,23 @@ var vueModel = {
         },
     },
     methods:{
+        addIngredientToList(){
+            var selectedIngredientPortion = document.getElementById("ingredientPortionId");    
+            this.selectIngredient.portion = selectedIngredientPortion.value;
+            this.listOfSelecetIngredient.push(this.selectIngredient);
+            var counter = 0;
+            this.ingredients.forEach(item => {
+                if(item.ingredientID === this.selectIngredient.ingredientID){
+                    this.ingredients.splice(counter,1);
+                }
+                counter++;
+            });
+            document.getElementById("ingredientDurationId").value ="";
+            document.getElementById("ingredientPortionId").value ="";
+        },
+        handelInputIngredient(value){
+            this.selectIngredient = value;
+        },
         loadIngredients(){
             var i = 0;
                 this.$store.state.ingredients.forEach((ingredient) => {     
@@ -299,9 +317,6 @@ var vueModel = {
                 this.tags[i] = tag;
                 i++;
             }); 
-        },
-        addIngredientTemplate(value, fieldType) {      
-            fieldType.push({value: ""});       
         },
         addTagTemplate(value, fieldType) {
             this.tagCounter++;
@@ -362,9 +377,6 @@ var vueModel = {
                 }
             });
         },
-        // removeIngredientTemplate(index, fieldType){
-        //     fieldType.splice(index, 1);
-        // }
         getRecipeData(){
             //general
             try{
@@ -376,20 +388,21 @@ var vueModel = {
                 console.log("there is something missing");
             }
             //ingredients
-            var selectedIngredientNames = document.getElementsByName("ingredientNameObjects");
-            var selectedIngredientPortions = document.getElementsByName("ingredientPortionObjects");       
-
-            var ingredients = [];
-            var ingredientCounter;
-            for(ingredientCounter = 0; ingredientCounter < service.getNameOfArrayObjects(selectedIngredientNames).length; ingredientCounter++){
-                ingredients[ingredientCounter] = new Object();                 
-                ingredients[ingredientCounter].name = service.getNameOfArrayObjects(selectedIngredientNames)[ingredientCounter];
-                ingredients[ingredientCounter].portion = service.getNameOfArrayObjects(selectedIngredientPortions)[ingredientCounter]; 
-                //get ingredientId
-                var tempIngredient = this.$store.state.ingredients.find(x => x.name === ingredients[ingredientCounter].name);
-                var ingredientId = tempIngredient.ingredientID;
-                ingredients[ingredientCounter].ingredientID = ingredientId;
-            }            
+            try{
+                var ingredients = [];
+                var ingredientCounter;
+                for(ingredientCounter = 0; ingredientCounter < this.listOfSelecetIngredient.length; ingredientCounter++){
+                    ingredients[ingredientCounter] = new Object();                 
+                    ingredients[ingredientCounter].id= this.listOfSelecetIngredient[ingredientCounter].ingredientID;
+                    ingredients[ingredientCounter].name = this.listOfSelecetIngredient[ingredientCounter].name;
+                    ingredients[ingredientCounter].portion = this.listOfSelecetIngredient[ingredientCounter].portion; 
+                    ingredients[ingredientCounter].measurement = this.listOfSelecetIngredient[ingredientCounter].measurement;
+                } 
+            }
+            catch(exception){
+                console.log("ingredient has an error");
+            }
+           
             //tags
             var selectedTags = document.getElementsByName("tagObjects");
 
@@ -407,8 +420,10 @@ var vueModel = {
             var images = [];
             var imageCounter;
             for(imageCounter = 0; imageCounter < this.imageItems.length; imageCounter++){
-                images[imageCounter] = new Object();           
-                images[imageCounter] = this.imageItems[imageCounter]; // image muss converted werden
+                images[imageCounter] = new Object();  
+                var temp = this.imageItems[imageCounter].image;  
+                temp = temp.substring(23);       
+                images[imageCounter] = temp;         
             } 
             //Put all informations to one recipe together
             try{
@@ -420,7 +435,6 @@ var vueModel = {
                 recipe.tags = tags;
                 recipe.images = images;
                 recipe.temperature = null;
-            
                 helper.createRecipe(recipe);
             }
             catch(exception){

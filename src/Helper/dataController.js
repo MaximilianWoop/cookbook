@@ -1,4 +1,4 @@
-//CRUD functions
+//CRUD functions for recipe
 async function createRecipe(recipe){
     var request = new XMLHttpRequest();
     request.open('POST','http://cookbook.ryotecx.de/api.php/recipe');
@@ -15,6 +15,19 @@ async function deleteRecipe(id){
     console.log("delete");
     console.log(id);
 }
+//CRUD functions for ingredient
+async function createIngredient(Ingredient){
+    console.log("create");
+    console.log(Ingredient);
+}
+async function updateIngredient(Ingredient){
+    console.log("update");
+    console.log(Ingredient);
+}
+async function deleteIngredient(id){
+    console.log("delete");
+    console.log(id);
+}
 
 //Get data 
 async function getRecipesFromURL(ref){
@@ -24,34 +37,6 @@ async function getRecipesFromURL(ref){
             ref.$store.dispatch('setRecipe',recipe);
         }));
 }
-
-// const axios = require('axios').default;
-// async function getRecipesFromURL(ref){
-//     axios.get('http://cookbook.ryotecx.de/api.php/recipe')
-//     .then(response => {
-//         var data = JSON.stringify(response.data);
-//         data = JSON.parse(data);
-//         data.forEach((recipe) => {       
-//             ref.$store.dispatch('setRecipe',recipe);
-//         }); 
-//     })
-//     .catch(err => {
-//         // Handle Error Here
-//         console.error(err);
-//     });
-// } 
-
-// async function getRecipesFromURL(ref){
-//     var request = new XMLHttpRequest();
-//     request.open('GET','http://cookbook.ryotecx.de/api.php/recipe',true);
-//     request.onload = async function(){
-//         var data = JSON.parse(this.response);
-//         data.forEach((recipe) => {            
-//             ref.$store.dispatch('setRecipe',recipe);
-//         });  
-//     }
-//     request.send();
-// } 
 
 const axios = require('axios').default;
 async function getIngredientsFromURL(ref){
@@ -94,5 +79,8 @@ var helper = {
     getRecipesFromURL,
     getIngredientsFromURL,
     getTagsFromURL,
+    createIngredient,
+    updateIngredient,
+    deleteIngredient,
 }
 export default helper;

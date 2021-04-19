@@ -130,7 +130,8 @@
                                 <v-expansion-panel>
                                     <v-expansion-panel-header>Bilder</v-expansion-panel-header>
                                     <v-expansion-panel-content>
-                                        <ImageGallery :items="images"/>
+                                        <v-img v-bind:src="'data:image/jpeg;base64,'+ images[0].image"/>
+                                        <!-- <ImageGallery :items="images"/> -->
                                     </v-expansion-panel-content>                                    
                                 </v-expansion-panel>                                
                             </v-expansion-panels>
@@ -217,7 +218,7 @@ var vueModel = {
                 console.error(exception.message);
             }                
         }
-        //images
+        //images 
         var imageIndex;
         for(imageIndex = 0; imageIndex < recipe.images.length; imageIndex++){
             try{
