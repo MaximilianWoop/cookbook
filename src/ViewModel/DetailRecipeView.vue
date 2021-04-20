@@ -4,7 +4,7 @@
             <v-col>
                 <v-row>
                     <v-card outline class="recipeDetailCard">
-                         <v-card-title class="h2">Name des Rezeptes</v-card-title>
+                         <v-card-title class="h2">{{this.name}}</v-card-title>
                          <v-row>
                              <!-- General -->
                              <v-expansion-panels accordion>

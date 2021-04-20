@@ -4,79 +4,38 @@
             <v-col>
                 <v-row no gutters>
                     <v-card outlined class="addIngredientCard">
-                        <v-card-title class="h2">Neue Zutat</v-card-title>
-                        <v-row>
-                            <v-card style="width:100%" outlined>
-                                <v-col>
-                                    <v-text-field 
-                                        label="Name" 
-                                        v-model="ingredientName"
-                                        id="ingredientNameId"
-                                        outlined/>
-                                </v-col>
-                                <v-col align="center">
-                                    <v-select
-                                        :items="measurements"
-                                        v-model="ingredientMeasurement"
-                                        label="Einheit"
-                                        id="ingredientMeasurementId"
-                                        dense
-                                        solo
-                                        ></v-select>                                                                   
-                                </v-col>
-                                <v-col>
-                                    <!-- Images -->
-                                    <v-expansion-panels accordion>
-                                        <v-expansion-panel>
-                                            <v-expansion-panel-header>Bilder</v-expansion-panel-header>
-                                            <v-expansion-panel-content>
-                                                <v-card>
-                                                    <v-toolbar>                                                
-                                                        <v-row>
-                                                            <v-col>
-                                                                <v-toolbar-title>Bilder</v-toolbar-title>                                                    
-                                                            </v-col>
-                                                            <v-spacer></v-spacer>
-                                                            <v-col>
-                                                                <v-btn persistent @click="toggleCamDialog" icon>
-                                                                    <v-icon>mdi-camera</v-icon>
-                                                                </v-btn>  
-                                                            </v-col>                                                          
-                                                            <v-col>
-                                                                <v-file-input :multiple="true" :hide-input="true" @change="onChangeImageFile" prepend-icon="mdi-plus" accept="image/*"/>
-                                                            </v-col>
-                                                            <v-col>
-                                                                <v-btn icon id="deleteImageButton" @click="deleteImage">
-                                                                    <v-icon>mdi-trash-can-outline</v-icon>
-                                                                </v-btn>
-                                                            </v-col>
-                                                        </v-row>                                                
-                                                    </v-toolbar>
-                                                    <ImageGallery :items="imageItems" v-on:changedGalleryImage="changedGalleryImage"/>
-                                                </v-card>                                        
-                                            </v-expansion-panel-content>                                    
-                                        </v-expansion-panel>                                
-                                    </v-expansion-panels>
-                                    <v-dialog v-model="cameraDialog" persistent>
-                                        <template>
+                        <v-card>                          
+                            <v-col>
+                                <v-text-field 
+                                    label="Name" 
+                                    v-model="ingredientName"
+                                    id="ingredientNameId"
+                                    outlined/>
+                            </v-col>
+                            <v-col align="center">
+                                <v-select
+                                    :items="measurements"
+                                    v-model="ingredientMeasurement"
+                                    label="Einheit"
+                                    id="ingredientMeasurementId"
+                                    dense
+                                    solo
+                                    ></v-select>                                                                   
+                            </v-col>
+                            <v-col>
+                                <!-- Images -->
+                                <v-expansion-panels accordion>
+                                    <v-expansion-panel>
+                                        <v-expansion-panel-header>Bilder</v-expansion-panel-header>
+                                        <v-expansion-panel-content>
                                             <v-card>
-                                                <v-card-title>Bilder hinzufügen</v-card-title>
-                                                <v-card-text>
-                                                    <v-row>
-                                                        <video/>
-                                                        <canvas style="display:none"/>
-                                                    </v-row>
-                                                    <v-row>
-                                                        <v-btn text @click="cameraUseScreenShot">Foto aufnehmen</v-btn>
-                                                        <v-btn text @click="toggleCamDialog">Abbrechen</v-btn>
-                                                    </v-row>
-                                                </v-card-text>
-                                            </v-card>
-                                        </template>
-                                    </v-dialog>
-                                </v-col>
-                            </v-card>
-                        </v-row>
+                                                <ImageGallery :items="imageItems" v-on:changedGalleryImage="changedGalleryImage"/>
+                                            </v-card>                                        
+                                        </v-expansion-panel-content>                                    
+                                    </v-expansion-panel>                                
+                                </v-expansion-panels>
+                            </v-col>                            
+                        </v-card>
                         <!-- Buttons -->
                         <v-row>
                             <v-col class="button-col-width">
@@ -124,7 +83,12 @@ var vueModel = {
             cameraDialog: false,
         }
     },
-    async mounted(){},
+    async mounted(){
+        if(this.$store.state.ingredients.length === 0)
+        {
+            await helper.getIngredientsFromURL(this);                        
+        }
+    },
     computed:{},
     methods:{
         getIngredientData(){            

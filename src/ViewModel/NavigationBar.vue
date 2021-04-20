@@ -55,14 +55,20 @@ export default {
         return{
             drawer: false,
             mini: false,
+            tagDialog: false,
             MenuPoints: [
                 {title: 'Übersicht', icon: 'mdi-clipboard-list-outline', route: '/cookbookview'},
                 {title: 'Mein Account', icon: 'mdi-account', route: ''},   
                 {title: 'Rezept hinzufügen', icon: 'mdi-notebook-edit-outline', route: '/AddRecipeView'},
                 {title: 'Zutat hinzufügen', icon: 'mdi-bottle-tonic-plus-outline', route: '/AddIngredientView'}, 
-                {title: 'Einstellungen', icon: 'mdi-cog', route: ''},             
+                {title: 'Einstellungen', icon: 'mdi-cog', route: '/SettingView'},   
             ]
         }
-    }
+    },
+    async mounted(){},
+    computed:{},
+    methods: {},
+    props:[],
+    components:{},
 }
 </script>
