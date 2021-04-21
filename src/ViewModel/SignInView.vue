@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="signIn-view">
     <v-row>
       <v-col>
         <v-row>

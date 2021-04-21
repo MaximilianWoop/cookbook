@@ -1,58 +1,67 @@
 <template>
-    <div>
-        <v-card class="setting-Card">
-            <v-row>
-                <v-col>
-                    <v-expansion-panels accordion>
-                        <v-expansion-panel>
-                            <v-expansion-panel-header>Alle Rezepte</v-expansion-panel-header>
-                            <v-expansion-panel-content>
-                                <v-data-table
-                                    :headers="headersOfRecipe"
-                                    :items="recipeDatatableItems"
-                                    :items-per-page="25"
-                                    class="elevation-1">                                                                        
-                                </v-data-table>
-                            </v-expansion-panel-content>
-                        </v-expansion-panel>
-                    </v-expansion-panels>
-                </v-col>
-            </v-row>
-            <v-row>
-                <v-col>
-                    <v-expansion-panels accordion>
-                        <v-expansion-panel>
-                            <v-expansion-panel-header>Alle Zutaten</v-expansion-panel-header>
-                            <v-expansion-panel-content>
-                                <v-data-table
-                                    :headers="headersOfIngredient"
-                                    :items="ingredientDatatableItems"
-                                    :items-per-page="25"
-                                    class="elevation-1">                                                                        
-                                </v-data-table>
-                            </v-expansion-panel-content>
-                        </v-expansion-panel>
-                    </v-expansion-panels>
-                </v-col>
-            </v-row>
-            <v-row>
-                <v-col>
-                    <v-expansion-panels accordion>
-                        <v-expansion-panel>
-                            <v-expansion-panel-header>Alle Tags</v-expansion-panel-header>
-                            <v-expansion-panel-content>
-                                <v-data-table
-                                    :headers="headersOfTags"
-                                    :items="tagDatatableItems"
-                                    :items-per-page="25"
-                                    class="elevation-1">                                                                        
-                                </v-data-table>
-                            </v-expansion-panel-content>
-                        </v-expansion-panel>
-                    </v-expansion-panels>
-                </v-col>
-            </v-row>
-        </v-card>
+    <div class="setting-view">
+        <v-row>
+            <v-col>
+                <v-row no-gutters>
+                    <v-card class="setting-Card" id="setting-Card-Id">
+                        <!-- Recipe -->
+                        <v-row>
+                            <v-col>
+                                <v-expansion-panels accordion>
+                                    <v-expansion-panel>
+                                        <v-expansion-panel-header>Alle Rezepte</v-expansion-panel-header>
+                                        <v-expansion-panel-content>
+                                            <v-data-table
+                                                :headers="headersOfRecipe"
+                                                :items="recipeDatatableItems"
+                                                :items-per-page="25"
+                                                class="elevation-1">                                                                        
+                                            </v-data-table>
+                                        </v-expansion-panel-content>
+                                    </v-expansion-panel>
+                                </v-expansion-panels>
+                            </v-col>
+                        </v-row>
+                        <!-- Ingredients -->
+                        <v-row>
+                            <v-col>
+                                <v-expansion-panels accordion>
+                                    <v-expansion-panel>
+                                        <v-expansion-panel-header>Alle Zutaten</v-expansion-panel-header>
+                                        <v-expansion-panel-content>
+                                            <v-data-table
+                                                :headers="headersOfIngredient"
+                                                :items="ingredientDatatableItems"
+                                                :items-per-page="25"
+                                                class="elevation-1">                                                                        
+                                            </v-data-table>
+                                        </v-expansion-panel-content>
+                                    </v-expansion-panel>
+                                </v-expansion-panels>
+                            </v-col>
+                        </v-row>
+                        <!-- Tags -->
+                        <v-row>
+                            <v-col>
+                                <v-expansion-panels accordion>
+                                    <v-expansion-panel>
+                                        <v-expansion-panel-header>Alle Tags</v-expansion-panel-header>
+                                        <v-expansion-panel-content>
+                                            <v-data-table
+                                                :headers="headersOfTags"
+                                                :items="tagDatatableItems"
+                                                :items-per-page="25"
+                                                class="elevation-1">                                                                        
+                                            </v-data-table>
+                                        </v-expansion-panel-content>
+                                    </v-expansion-panel>
+                                </v-expansion-panels>
+                            </v-col>
+                        </v-row>
+                    </v-card>
+                </v-row>
+            </v-col>
+        </v-row>
     </div>
 </template>
 
@@ -78,12 +87,11 @@ export default {
                 { text: 'Index', value: 'tagID' },
                 { text: 'Name', value: 'name' },
             ],
-            // recipeDatatableItems: [],
-            // ingredientDatatableItems: [],
-            // tagDatatableItems: [],
         }
     },
     async mounted(){
+        document.getElementById("loadingCircle").style.display = "inline";
+        document.getElementById("setting-Card-Id").style.display = "none";
         if(this.$store.state.recipes.length === 0)
         {
             await helper.getRecipesFromURL(this);
@@ -96,6 +104,8 @@ export default {
         {
             await helper.getTagsFromURL(this);
         }
+        document.getElementById("loadingCircle").style.display = "none";
+        document.getElementById("setting-Card-Id").style.display = "inline";
     },
     computed:{
         recipeDatatableItems(){

@@ -17,6 +17,7 @@ import '@/assets/css/detailRecipe.scss'
 import '@/assets/css/detailIngredient.scss'
 import '@/assets/css/imageGallery.scss'
 import '@/assets/css/setting.scss'
+import '@/assets/css/loader.scss'
 
 
 Vue.config.productionTip = false

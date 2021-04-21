@@ -1,16 +1,25 @@
-.recipeDetailCard{
-    width: 100%;
-    padding: 5px;
-    .v-card__title{
-        padding: 5px;
-    }
+.detail-recipe-view{
     .row{
-        margin: auto;
-        .v-expansion-panels{
+        margin: 0px;
+        .col{
+            padding: 0px;
+        }
+    }
+    .recipeDetailCard{
+        width: 100%;
+        padding: 5px;
+        min-height: 100vh;
+        .v-card__title{
             padding: 5px;
         }
-        .right{
-            float: right;
+        .row{
+            margin: auto;
+            .v-expansion-panels{
+                padding: 5px;
+            }
+            .right{
+                float: right;
+            }
         }
     }
 }

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="cookbook-view">
         <v-row>
             <v-col>
                 <v-row no-gutters>
@@ -7,13 +7,13 @@
                         <div class="cookbook-Header">
                             <v-row no-gutters>
                                 <v-col>
-                                    <v-text-field label="Name"/>
+                                    <v-text-field id="cookbook-filter-by-name" label="Name" @input="filterByName"/>
                                 </v-col>
                                 <v-col>
-                                    <v-text-field label="Tags"/>
+                                    <v-text-field id="cookbook-filter-by-tag" label="Tags" @input="filterByTag"/>
                                 </v-col>
                                 <v-col>
-                                    <v-text-field label="Dauer"/>
+                                    <v-text-field id="cookbook-filter-by-duration" label="Dauer" @input="filterByDuration"/>
                                 </v-col>
                             </v-row>
                         </div> 
@@ -88,15 +88,35 @@ var vueModel = {
     async mounted(){
         if(this.$store.state.recipes.length === 0)
         {
+            document.getElementById("loadingCircle").style.display = "inline";
             await helper.getRecipesFromURL(this);
+            document.getElementById("loadingCircle").style.display = "none";
         }                 
     },
     computed:{
         recipes(){
-            return this.$store.state.recipes;
+            return this.getRecpies();
         }
     },
-    methods:{},
+    methods:{
+        getRecpies(){
+            return this.$store.state.recipes;           
+        },
+        filterByName(){
+            var input = document.getElementById("cookbook-filter-by-name").value;
+            var output = [];
+            output = this.recipes.filter(recipe => recipe.name == input);
+            if(output.length != 0){
+                console.log(this.recipes);
+            } 
+        },
+        filterByTag(){
+
+        },
+        filterByDuration(){
+
+        }
+    },
     props:[],
     components:{},
 }

@@ -1,5 +1,5 @@
 <template>
-    <div data-app>
+    <div class="add-ingredient-view" data-app>
         <v-row>
             <v-col>
                 <v-row no gutters>

@@ -1,9 +1,9 @@
 <template>
-    <div data-app>
+    <div data-app class="detail-recipe-view">
         <v-row>
             <v-col>
-                <v-row>
-                    <v-card outline class="recipeDetailCard">
+                <v-row no-gutters>
+                    <v-card outline class="recipeDetailCard" id="recipeDetailCard-Id">
                          <v-card-title class="h2">{{this.name}}</v-card-title>
                          <v-row>
                              <!-- General -->
@@ -171,7 +171,11 @@ var vueModel = {
     async mounted(){
         //get data
         if(this.$store.state.recipes.length<=0){
+            document.getElementById("recipeDetailCard-Id").style.display = "none"
+            document.getElementById("loadingCircle").style.display = "inline";
             await helper.getRecipesFromURL(this);
+            document.getElementById("loadingCircle").style.display = "none";
+            document.getElementById("recipeDetailCard-Id").style.display = "inline"
         }          
         const currentURL = new URL(document.location.href);
         var id = currentURL.searchParams.get("recipeId");

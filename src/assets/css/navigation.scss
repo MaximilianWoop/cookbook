@@ -1,4 +1,10 @@
 .nav-bar{
+    .row{
+        margin: 0px;
+        .col{
+            padding: 0 0 10px 0;
+        }
+    }
     .v-toolbar{
         color: whitesmoke;
         .v-toolbar__content
