@@ -3,7 +3,7 @@
     <router-link to="/"></router-link>   
     <div id="loadingCircle">
       <div style="position: relative;">
-          <div style=" width: 100%;  height: 100%;  position: absolute;  top: 200px;  left: 50px;  z-index: 10;">
+          <div style=" width: 100%;  height: 100%;  position: absolute;  top: 50vh;  left: 50vw;  z-index: 10;">
               <div class="loader"></div>
           </div>                                
       </div>
