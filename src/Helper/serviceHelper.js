@@ -19,6 +19,9 @@ function getNameOfArrayObjects(data){
     return name;
 }
 
+
+
+
 var service = {
     getNameOfArrayObjects,
 }

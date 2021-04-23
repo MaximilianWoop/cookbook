@@ -41,14 +41,17 @@ export default new Vuex.Store({
         }
     },
     getters:{
-        ingredientLength: state => {
-            return Object.keys(state.ingredients).length;
-        },
-        recipeLength: state => {
-            return state.recipes.length;
-        },
+        // ingredientLength: state => {
+        //     return Object.keys(state.ingredients).length;
+        // },
+        // recipeLength: state => {
+        //     return state.recipes.length;
+        // },
         getSelectedRecipe: (state) => (id) => {
             return state.recipes.find(recipe => recipe.recipeID == id)
+        },
+        getSelectedIngredient: (state) => (id) => {
+            return state.ingredients.find(ingredient => ingredient.ingredientID == id)
         }
     },
 })

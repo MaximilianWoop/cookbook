@@ -4,15 +4,19 @@ async function createRecipe(recipe){
     request.open('POST','http://cookbook.ryotecx.de/api.php/recipe');
     request.setRequestHeader("Content-Type", "application/json");
     var recipeJson = JSON.stringify(recipe);
-    request.send(recipeJson);    
+    request.send(recipeJson); 
 }
 async function updateRecipe(recipe){
     console.log("update");
     console.log(recipe);
 }
 async function deleteRecipe(id){
-    console.log("delete");
-    console.log(id);
+    var request = new XMLHttpRequest();
+    request.open('DELETE','http://cookbook.ryotecx.de/api.php/recipe',true);
+    request.setRequestHeader("Content-Type", "application/json");
+    var recipeJson = "{\"recipeID\":" + id + "}";
+    console.log(recipeJson);
+    request.send(recipeJson); 
 }
 //CRUD functions for ingredient
 async function createIngredient(Ingredient){

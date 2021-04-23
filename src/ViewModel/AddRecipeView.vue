@@ -172,6 +172,9 @@
                                 </v-btn>
                             </v-col>                            
                         </v-row>
+                        <v-snackbar v-model="snackbar" :timeout="4000" :color="snackbarColor">
+                            <span>{{snackbarText}}</span>
+                        </v-snackbar>
                     </v-card>
                 </v-row>
             </v-col>
@@ -199,8 +202,8 @@ var vueModel = {
             name: '',
             duration: '',
             description: '',
-            nameRules: [v => v.length <= 50 || 'Maximale Zeichenanzahl ist 50'],
-            durationRules: [v => v.length <= 4 || 'Maximale Zeichenanzahl ist 4'],
+            nameRules: [v => (v.length <= 50 && v.length > 0) || 'Zeichenanzahl muss zwischen 1 und 50 liegen'],
+            durationRules: [v => (v.length <= 4 && v.length > 0) || 'Zeichenanzahl muss zwischen 1 und 4 liegen'],
             descriptionRules: [v => v.length <= 60000 || 'Maximale Zeichenanzahl ist 60000'],
             tagCounter: 0,
             // ingredients
@@ -219,6 +222,10 @@ var vueModel = {
             //generator
             ingredientsArray: [{}],
             tagsArray: [{}],
+            //snackbar
+            snackbar: false,
+            snackbarText: '',
+            snackbarColor: '',
         }
     },
     async mounted(){
@@ -333,20 +340,30 @@ var vueModel = {
             } 
             //Put all informations to one recipe together
             try{
-                var recipe = new Object();
-                recipe.name = name;
-                recipe.duration = duration;
-                recipe.description = description;
-                recipe.ingredients = ingredients;
-                recipe.tags = tags;
-                recipe.images = images;
-                recipe.temperature = null;
-                console.log(recipe);
-                helper;
-                // helper.createRecipe(recipe);
+                if(name != "" && duration != "" && tags.length != 0){
+                    var recipe = new Object();
+                    recipe.name = name;              
+                    recipe.duration = duration;
+                    recipe.description = description;
+                    recipe.ingredients = ingredients;
+                    recipe.tags = tags;
+                    recipe.images = images;
+                    recipe.temperature = null;
+                    helper.createRecipe(recipe);
+                    this.snackbar = true;
+                    this.snackbarText = "Rezept gespeichert."
+                    this.snackbarColor = "#2f810e"
+                }   
+                else{
+                    this.snackbar = true;
+                    this.snackbarText = "Es muss der Name, eine Dauer und mindestens ein Tag vergeben sein."
+                    this.snackbarColor = "#910a0a"
+                }             
             }
             catch(exception){
-                console.log("error");
+                this.snackbar = true;
+                this.snackbarText = "Es ist ein Fehler beim Speichern aufgetreten."
+                this.snackbarColor = "#910a0a"
             }
         },
     },

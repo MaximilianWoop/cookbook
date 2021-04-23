@@ -2,8 +2,8 @@
   <div>    
     <router-link to="/"></router-link>   
     <div id="loadingCircle">
-      <div style="position: relative;">
-          <div style=" width: 100%;  height: 100%;  position: absolute;  top: 50vh;  left: 50vw;  z-index: 10;">
+      <div>
+          <div class="loader-postion">
               <div class="loader"></div>
           </div>                                
       </div>
@@ -15,5 +15,13 @@
 <style>
   #loadingCircle{
       display: none;
+  }
+  .loader-postion{
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 10;
   }
 </style>

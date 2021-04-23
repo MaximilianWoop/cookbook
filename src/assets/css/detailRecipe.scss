@@ -9,6 +9,12 @@
         width: 100%;
         padding: 5px;
         min-height: 100vh;
+        .button-col{
+            text-align: center;
+            .button{
+                width: 100%;
+            }
+        }
         .v-card__title{
             padding: 5px;
         }

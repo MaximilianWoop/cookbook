@@ -4,7 +4,23 @@
             <v-col>
                 <v-row no-gutters>
                     <v-card outline class="recipeDetailCard" id="recipeDetailCard-Id">
-                         <v-card-title class="h2">{{this.name}}</v-card-title>
+                        <v-row>
+                             <v-col>
+                                  <v-card-title class="h2">{{this.name}}</v-card-title>
+                             </v-col>
+                             <v-spacer></v-spacer>
+                             <v-col class="button-col col-sm-1">
+                                 <v-btn class="button" @click="editItem" icon>
+                                     <v-icon>mdi-grease-pencil</v-icon>
+                                 </v-btn>
+                             </v-col>
+                             <v-col class="button-col col-sm-1">
+                                 <v-btn class="button" @click="deleteItem" icon>
+                                     <v-icon>mdi-delete</v-icon>
+                                 </v-btn>
+                             </v-col>
+                         </v-row>
+                        
                          <v-row>
                              <!-- General -->
                              <v-expansion-panels accordion>
@@ -240,7 +256,15 @@ var vueModel = {
         }
     },
     computed:{},
-    methods:{},
+    methods:{
+        deleteItem(){
+            helper.deleteRecipe(this.id)
+            setTimeout(function() {window.location.href = "/cookbookview"},500);
+        },
+        editItem(){
+            console.log("edit");
+        },
+    },
     props:[],
     components:{
         'ImageGallery':ImageGallery,

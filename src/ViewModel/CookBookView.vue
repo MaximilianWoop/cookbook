@@ -8,7 +8,6 @@
                             <v-row no-gutters>
                                 <v-col>
                                     <v-text-field id="cookbook-filter-by-name" label="Name" @input="filterByName" v-model="name"/>
-                                    <!-- <v-text-field id="cookbook-filter-by-name" label="Name" @input="filterByName"/> -->
                                 </v-col>
                                 <v-col>
                                     <v-text-field id="cookbook-filter-by-tag" label="Tags" @input="filterByTag" v-model="tag"/>
@@ -112,10 +111,10 @@ var vueModel = {
     },
     methods:{
         filterByName(){
-            return this.$store.state.recipes.filter(recipe => !recipe.name.indexOf(this.name));
+            return this.$store.state.recipes.filter(recipe => !recipe.name.toLowerCase().indexOf(this.name.toLowerCase()));
         },
         filterByTag(){
-            return this.$store.state.recipes.filter(recipe => !recipe.tags.indexOf(this.tag));
+            return this.$store.state.recipes.filter(recipe => recipe.tags.some(tag => tag.name.toLowerCase().includes(this.tag.toLowerCase())));            
         },
         filterByDuration(){
             return this.$store.state.recipes.filter(recipe => !recipe.duration.indexOf(this.duration));
