@@ -7,19 +7,20 @@
                         <div class="cookbook-Header">
                             <v-row no-gutters>
                                 <v-col>
-                                    <v-text-field id="cookbook-filter-by-name" label="Name" @input="filterByName"/>
+                                    <v-text-field id="cookbook-filter-by-name" label="Name" @input="filterByName" v-model="name"/>
+                                    <!-- <v-text-field id="cookbook-filter-by-name" label="Name" @input="filterByName"/> -->
                                 </v-col>
                                 <v-col>
-                                    <v-text-field id="cookbook-filter-by-tag" label="Tags" @input="filterByTag"/>
+                                    <v-text-field id="cookbook-filter-by-tag" label="Tags" @input="filterByTag" v-model="tag"/>
                                 </v-col>
                                 <v-col>
-                                    <v-text-field id="cookbook-filter-by-duration" label="Dauer" @input="filterByDuration"/>
+                                    <v-text-field id="cookbook-filter-by-duration" label="Dauer" @input="filterByDuration" v-model="duration"/>
                                 </v-col>
                             </v-row>
                         </div> 
                         <div class="cookbook-list">
                             <v-list three-line>
-                                <template v-for="item in recipes">
+                                <template v-for="item in filtered">
                                     <v-list-item 
                                         :key="item.name"
                                         :href="'/DetailRecipeView?recipeId='+item.recipeID">
@@ -82,7 +83,9 @@ import helper from '@/Helper/dataController'
 var vueModel = {
     data(){
         return{
-
+            name: '',
+            tag: '',
+            duration: '',
         }
     },
     async mounted(){
@@ -94,27 +97,28 @@ var vueModel = {
         }                 
     },
     computed:{
-        recipes(){
-            return this.getRecpies();
+        filtered(){
+            if(this.name != ""){
+                return this.filterByName();
+            }
+            if(this.tag != ""){
+                return this.filterByTag();
+            }
+            if(this.duration != ""){
+                return this.filterByDuration();
+            }
+            return this.$store.state.recipes
         }
     },
     methods:{
-        getRecpies(){
-            return this.$store.state.recipes;           
-        },
         filterByName(){
-            var input = document.getElementById("cookbook-filter-by-name").value;
-            var output = [];
-            output = this.recipes.filter(recipe => recipe.name == input);
-            if(output.length != 0){
-                console.log(this.recipes);
-            } 
+            return this.$store.state.recipes.filter(recipe => !recipe.name.indexOf(this.name));
         },
         filterByTag(){
-
+            return this.$store.state.recipes.filter(recipe => !recipe.tags.indexOf(this.tag));
         },
         filterByDuration(){
-
+            return this.$store.state.recipes.filter(recipe => !recipe.duration.indexOf(this.duration));
         }
     },
     props:[],

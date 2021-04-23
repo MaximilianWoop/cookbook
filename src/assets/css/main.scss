@@ -4,7 +4,6 @@ body{
     background: whitesmoke;
     height: 100vh;
     width: 100vw;
-    padding: 5%;
 }
 
 *,
@@ -13,13 +12,8 @@ body{
     box-sizing: border-box;
 }
 
-.primary-card{
-    width:100%;
-    padding:5px;
-    min-height: 100vh;
-    .v-card__title{
-        padding: 5px;
-    }
+:root{
+    --cb-white: whitesmoke;
+    --cb-blue: rgba(2, 76, 140, 1);
 }
-
 

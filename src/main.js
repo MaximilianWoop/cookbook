@@ -31,3 +31,13 @@ new Vue({
   render: h => h(App)
 }).$mount('#app')
 
+
+
+
+/* 
+Programm to server:
+git clone https://github.com/MaximilianWoop/cookbook.git
+docker build -t my-app:dev .
+docker run -v ${PWD}:/app -v /app/node_modules -p 8082:8080 --rm my-app:dev
+*/
+
