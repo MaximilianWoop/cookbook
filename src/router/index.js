@@ -6,6 +6,7 @@ import RecipeDetailView from '../Views/DetailRecipeView.vue'
 import IngredientDetailView from '../Views/DetailIngredientView.vue'
 import AddRecipeView from '../Views/AddRecipeView.vue'
 import AddIngredientView from '../Views/AddIngredientView.vue'
+import AddTagView from '../Views/AddTagView.vue'
 import SettingView from '../Views/SettingView.vue'
 
 Vue.use(VueRouter)
@@ -40,6 +41,11 @@ const routes = [
     path: '/AddIngredientView',
     name: 'AddIngredientView',
     component: AddIngredientView
+  },
+  {
+    path: '/AddTagView',
+    name: 'AddTagView',
+    component: AddTagView
   },
   {
     path: '/SettingView',

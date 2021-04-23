@@ -1,5 +1,5 @@
 <template>
-    <div class="nav-bar">
+    <div class="nav-bar" data-app>
         <!-- Header -->
         <v-row>
             <v-col>
@@ -8,9 +8,28 @@
                         <v-app-bar-nav-icon @click="drawer = true" large/>
                         <v-toolbar-title class="h1">Kochbuch</v-toolbar-title>
                         <v-spacer></v-spacer>
-                        <v-btn icon href="/addRecipeView" style="float:right">
-                            <v-icon>mdi-plus</v-icon>
-                        </v-btn>
+                        <v-menu
+                            transition="slide-y-transition"
+                            bottom
+                            >
+                            <template v-slot:activator="{ on, attrs }">
+                                <v-btn
+                                    style="background:rgba(2, 76, 140, 1);"
+                                    v-bind="attrs"
+                                    v-on="on">
+                                    <v-icon>mdi-plus</v-icon>
+                                </v-btn>
+                            </template>
+                            <v-list>
+                                <v-list-item
+                                v-for="item in addItems"
+                                :key="item.title"
+                                link
+                                :to="item.route">
+                                    <v-list-item-title>{{ item.title }}</v-list-item-title>
+                                </v-list-item>
+                            </v-list>
+                        </v-menu>
                     </v-toolbar>
                 </v-card>
             </v-col>
@@ -62,6 +81,11 @@ export default {
                 {title: 'Rezept hinzufügen', icon: 'mdi-notebook-edit-outline', route: '/AddRecipeView'},
                 {title: 'Zutat hinzufügen', icon: 'mdi-bottle-tonic-plus-outline', route: '/AddIngredientView'}, 
                 {title: 'Einstellungen', icon: 'mdi-cog', route: '/SettingView'},   
+            ],
+            addItems: [ 
+                {title: 'Rezept', route: '/AddRecipeView'},
+                {title: 'Zutat', route: '/AddIngredientView'},
+                {title: 'Tag', route: '/AddTagView'}
             ]
         }
     },

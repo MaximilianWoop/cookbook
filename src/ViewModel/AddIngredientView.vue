@@ -21,7 +21,7 @@
                                     dense
                                     solo
                                     ></v-select>                                                                   
-                            </v-col>
+                            </v-col>                            
                             <v-col>
                                 <!-- Images -->
                                 <v-expansion-panels accordion>
@@ -74,7 +74,6 @@ var vueModel = {
     data(){
         return{
             ingredientName: '',
-            ingredientPortion: '',
             ingredientMeasurement: '',
             measurements: ['STK','TL','EL','g','Kg','ml','l'],
             //image
@@ -109,6 +108,7 @@ var vueModel = {
                 ingredient.images = images;
                 //create ingredient
                 helper.createIngredient(ingredient);
+                setTimeout(function() {window.location.href = "/cookbookview"},500);
             }
             catch(exception){
                 console.log("error by creating an ingredient");

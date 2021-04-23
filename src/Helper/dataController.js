@@ -24,6 +24,7 @@ async function createIngredient(Ingredient){
     request.open('POST','http://cookbook.ryotecx.de/api.php/ingredient');
     request.setRequestHeader("Content-Type", "application/json");
     var ingredientJson = JSON.stringify(Ingredient);
+    console.log(ingredientJson);
     request.send(ingredientJson);
 }
 async function updateIngredient(Ingredient){
