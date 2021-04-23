@@ -4,16 +4,11 @@
             <v-row>
                 <v-col class="addImage-col">
                     <v-toolbar-title>Bilder</v-toolbar-title>                                                    
-                </v-col>
-                <v-col class="btn-col">
-                    <v-btn persistent @click="toggleCamDialog" icon>
-                        <v-icon>mdi-camera</v-icon>
-                    </v-btn>  
-                </v-col>                                                          
-                <v-col class="btn-col">
+                </v-col>                                                         
+                <v-col class="btn-col col-sm-1">
                     <v-file-input :multiple="true" :hide-input="true" @change="onChangeImageFile" prepend-icon="mdi-plus" accept="image/*"/>
                 </v-col>
-                <v-col class="btn-col">
+                <v-col class="btn-col col-sm-1">
                     <v-btn icon id="deleteImageButton" @click="deleteImage">
                         <v-icon>mdi-trash-can-outline</v-icon>
                     </v-btn>
@@ -67,15 +62,10 @@
 </template>
 
 <script>
-function setCamSource(stream){
-    document.querySelector('video').srcObject = stream;
-    document.querySelector('video').play();
-}
 export default{
     data(){
         return{
             showArrows:false,
-            cameraDialog: false,
         }
     },
     async mounted(){},
@@ -87,35 +77,6 @@ export default{
     methods:{
         changedImage(value){
             this.$emit("changedGalleryImage",value);
-        },
-        toggleCamDialog(){
-            this.cameraDialog = !this.cameraDialog;
-            if(this.cameraDialog){
-                navigator.mediaDevices.getUserMedia({video: true}).then(setCamSource.bind(null.this));
-            }
-            else{
-                var stream = document.querySelector('video').srcObject;
-                stream.getTracks().forEach(function(track){
-                    track.stop();
-                });
-                document.querySelector('video').pause();
-            }
-            setTimeout(() => {
-                document.getElementById("deleteButton").style.display = 'inline';
-            },100);
-        },
-        cameraUseScreenShot(){
-            var video = document.querySelector('video');
-            var canvas = document.querySelector('canvas');
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
-            canvas.getContext('2d').drawImage(video,0,0);
-            var dataURL = canvas.toDataURL('image/webp');
-            var newImage = {
-                image: dataURL
-            }
-            this.imageItems.push(newImage);
-            this.toggleCamDialog();
         },
         deleteImage(){
             this.imageItems.splice(this.selectedImage,1);

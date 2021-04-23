@@ -17,7 +17,8 @@
                     width: 50px;
                     display: flex;
                     justify-content: flex-end;
-                    align-items: center;  
+                    align-items: center; 
+                    text-align: center; 
                     .v-input{
                         justify-content: flex-end;
                     }      
@@ -44,23 +45,5 @@
     }
     .imageGallery-container{
         background:black
-    }
-}
-
-.cam-Dialog{
-    margin-left: 2%;
-    margin-right: 2%;
-    width: auto;
-    height: 10%;
-    .btn-col{
-        display: flex;
-        justify-content: center;
-        align-items: center;  
-        .v-input{
-            justify-content: center;
-        }      
-        .v-btn{
-            margin: 0px;
-        }          
     }
 }
