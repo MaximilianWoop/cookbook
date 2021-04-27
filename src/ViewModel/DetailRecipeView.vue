@@ -5,10 +5,6 @@
                 <v-row no-gutters>
                     <v-card outline class="recipeDetailCard" id="recipeDetailCard-Id">
                         <v-row>
-                             <v-col>
-                                  <v-card-title class="h2">{{this.name}}</v-card-title>
-                             </v-col>
-                             <v-spacer></v-spacer>
                              <v-col class="button-col col-sm-1">
                                  <v-btn class="button" @click="editItem" icon>
                                      <v-icon>mdi-grease-pencil</v-icon>
@@ -19,143 +15,107 @@
                                      <v-icon>mdi-delete</v-icon>
                                  </v-btn>
                              </v-col>
-                         </v-row>
-                        
-                         <v-row>
-                             <!-- General -->
-                             <v-expansion-panels accordion>
-                                <v-expansion-panel class="expansion-panel-general">
-                                    <v-expansion-panel-header>Allgemeines</v-expansion-panel-header>
-                                    <v-expansion-panel-content>
-                                         <!-- Name -->
-                                        <v-row>
-                                            <v-col>
-                                                <v-text-field 
-                                                    label="Name"
-                                                    :value="this.name" 
-                                                    id="detail-Recipe-Recipe-Name" 
-                                                    readonly
-                                                    outlined/>
-                                            </v-col>
-                                        </v-row>
-                                        <!-- Duration -->
-                                        <v-row>
-                                            <v-col>
-                                                <v-text-field
-                                                    label="Dauer" 
-                                                    :value="this.duration"
-                                                    id="detail-Recipe-Recipe-Duration"
-                                                    readonly
-                                                    outlined />
-                                            </v-col>
-                                        </v-row>                                      
-                                    </v-expansion-panel-content>
-                                </v-expansion-panel>
-                             </v-expansion-panels>
-                             <!-- Ingredients -->
-                             <v-expansion-panels accordion>
-                                <v-expansion-panel class="expansion-panel-general">
-                                    <v-expansion-panel-header>Zutaten</v-expansion-panel-header>
-                                    <v-expansion-panel-content>
-                                        <template>
-                                            <form>
-                                                <v-row>
-                                                    <div v-for="ingredient in ingredients" :key=ingredient>
-                                                        <v-card>
-                                                            <!-- Name -->
-                                                            <v-col>                                                                
-                                                                <v-text-field 
-                                                                    label="Name"
-                                                                    :value="ingredient.name"
-                                                                    id="detail-Recipe-Ingredient-Name"
-                                                                    readonly
-                                                                    outlined />
-                                                            </v-col> 
-                                                            <v-row>
+                         </v-row>     
+                         <v-card>                
+                            <v-row>
+                                <v-col>
+                                    <div class="h2" style="padding:5px">{{this.name}}</div>
+                                </v-col>
+                                <v-spacer></v-spacer>
+                                <v-col>
+                                    <div class="h2" style="padding:5px; float:right">{{this.duration}}</div>
+                                </v-col>
+                                <!-- Ingredients -->
+                                <v-expansion-panels accordion>
+                                    <v-expansion-panel class="expansion-panel-general">
+                                        <v-expansion-panel-header>Zutaten</v-expansion-panel-header>
+                                        <v-expansion-panel-content>
+                                            <template>
+                                                <hr>
+                                                <br>
+                                                <form>
+                                                    <v-row>
+                                                        <div v-for="ingredient in ingredients" :key=ingredient style="width: 100%">
+                                                            <v-row>                                                                
+                                                                <v-col class="item-property-col" style="min-width: 70%"> 
+                                                                    <!-- Name -->
+                                                                    <div>{{ingredient.name}}</div>                                                               
+                                                                </v-col>                                                             
                                                                 <v-col>
                                                                     <!-- portion -->
-                                                                    <v-text-field
-                                                                        label="Menge"
-                                                                        :value="ingredient.portion"
-                                                                        id="detail-Recipe-Ingredient-Portion"
-                                                                        readonly
-                                                                        outlined />
+                                                                    <div>{{ingredient.portion}}</div>
                                                                 </v-col>
                                                                 <v-col>
                                                                     <!-- measurement -->
-                                                                    <v-text-field 
-                                                                        label="Einheit"
-                                                                        :value="ingredient.measurement"
-                                                                        id="detail-Recipe-Ingredient-Measurement"
-                                                                        class="right"
-                                                                        readonly
-                                                                        outlined />
+                                                                    <div>{{ingredient.measurement}}</div>
                                                                 </v-col>
                                                             </v-row>                                                           
-                                                        </v-card>
-                                                    </div>
-                                                </v-row>
-                                            </form>
-                                        </template>  
-                                    </v-expansion-panel-content>
-                                </v-expansion-panel>
-                             </v-expansion-panels>
-                            <!-- Beschreibung -->
-                             <v-expansion-panels accordion>
-                                <v-expansion-panel class="expansion-panel-general">
-                                    <v-expansion-panel-header>Zubereitung</v-expansion-panel-header>
-                                    <v-expansion-panel-content>
-                                        <v-row>
-                                            <v-col>
-                                                <v-textarea 
-                                                    :value="description"
-                                                    id="detail-Recipe-Recipe-Description"
-                                                    readonly
-                                                    outlined/>
-                                            </v-col>
-                                        </v-row>
-                                    </v-expansion-panel-content>
-                                </v-expansion-panel>
-                             </v-expansion-panels>
-                             <!-- Tags -->
-                            <v-expansion-panels accordion>
-                                <v-expansion-panel>
-                                    <v-expansion-panel-header>Tags</v-expansion-panel-header>
-                                    <v-expansion-panel-content>
-                                        <template>
-                                            <form>
-                                                <v-row>
-                                                    <div v-for="tag in tags" :key="tag">                                                    
-                                                        <v-col>
-                                                            <v-text-field 
-                                                                label="Name"
-                                                                :value="tag.name"
-                                                                id="detail-Recipe-Recipe-Description"
-                                                                readonly
-                                                                outlined/>
-                                                        </v-col>                                                    
-                                                    </div>
-                                                </v-row>
-                                            </form>
-                                        </template>
-                                    </v-expansion-panel-content>                                    
-                                </v-expansion-panel>                                
-                            </v-expansion-panels>
-                            <!-- Images -->
-                            <v-expansion-panels accordion>
-                                <v-expansion-panel>
-                                    <v-expansion-panel-header>Bilder</v-expansion-panel-header>
-                                    <v-expansion-panel-content>
-                                        <div v-for="(item, index) in this.images" :key="index">
-                                            <v-row> 
-                                                <v-img v-bind:src="'data:image/jpeg;base64,'+ item.image"/>
-                                                <!-- <ImageGallery :items="images"/> -->
+                                                        </div>
+                                                    </v-row>
+                                                </form>
+                                            </template>  
+                                        </v-expansion-panel-content>
+                                    </v-expansion-panel>
+                                </v-expansion-panels>
+                                <!-- Beschreibung -->
+                                <v-expansion-panels accordion>
+                                    <v-expansion-panel class="expansion-panel-general">
+                                        <v-expansion-panel-header>Zubereitung</v-expansion-panel-header>
+                                        <v-expansion-panel-content>
+                                            <hr>
+                                            <br>
+                                            <v-row>
+                                                <v-col>
+                                                    <v-textarea 
+                                                        :value="description"
+                                                        id="detail-Recipe-Recipe-Description"
+                                                        readonly
+                                                        auto-grow/>
+                                                </v-col>
                                             </v-row>
-                                        </div>
-                                    </v-expansion-panel-content>                                    
-                                </v-expansion-panel>                                
-                            </v-expansion-panels>
-                         </v-row>
+                                        </v-expansion-panel-content>
+                                    </v-expansion-panel>
+                                </v-expansion-panels>
+                                <!-- Tags -->
+                                <v-expansion-panels accordion>
+                                    <v-expansion-panel>
+                                        <v-expansion-panel-header>Tags</v-expansion-panel-header>
+                                        <v-expansion-panel-content>
+                                            <template>
+                                                <form>
+                                                    <v-row>
+                                                        <div v-for="tag in tags" :key="tag">                                                    
+                                                            <v-col>
+                                                                <v-text-field 
+                                                                    label="Name"
+                                                                    :value="tag.name"
+                                                                    id="detail-Recipe-Recipe-Description"
+                                                                    readonly
+                                                                    outlined/>
+                                                            </v-col>                                                    
+                                                        </div>
+                                                    </v-row>
+                                                </form>
+                                            </template>
+                                        </v-expansion-panel-content>                                    
+                                    </v-expansion-panel>                                
+                                </v-expansion-panels>
+                                <!-- Images -->
+                                <v-expansion-panels accordion>
+                                    <v-expansion-panel>
+                                        <v-expansion-panel-header>Bilder</v-expansion-panel-header>
+                                        <v-expansion-panel-content>
+                                            <div v-for="(item, index) in this.images" :key="index">
+                                                <v-row> 
+                                                    <v-img v-bind:src="'data:image/jpeg;base64,'+ item.image"/>
+                                                    <!-- <ImageGallery :items="images"/> -->
+                                                </v-row>
+                                            </div>
+                                        </v-expansion-panel-content>                                    
+                                    </v-expansion-panel>                                
+                                </v-expansion-panels>
+                            </v-row>
+                        </v-card>
                     </v-card>
                 </v-row>
             </v-col>
