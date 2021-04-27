@@ -10,8 +10,7 @@
                         <v-spacer></v-spacer>
                         <v-menu
                             transition="slide-y-transition"
-                            bottom
-                            >
+                            bottom>
                             <template v-slot:activator="{ on, attrs }">
                                 <v-btn
                                     style="background:rgba(2, 76, 140, 1);"

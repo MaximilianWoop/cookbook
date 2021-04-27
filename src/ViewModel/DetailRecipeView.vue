@@ -25,9 +25,11 @@
                                 <v-col>
                                     <div class="h2" style="padding:5px; float:right">{{this.duration}}</div>
                                 </v-col>
+                            </v-row>
+                            <v-row>
                                 <!-- Ingredients -->
-                                <v-expansion-panels accordion>
-                                    <v-expansion-panel class="expansion-panel-general">
+                                <v-expansion-panels multiple v-model="ingredientExpansionPanel">
+                                    <v-expansion-panel class="expansion-panel-general"  @click="showSideMenuIfIngredientOpen">
                                         <v-expansion-panel-header>Zutaten</v-expansion-panel-header>
                                         <v-expansion-panel-content>
                                             <template>
@@ -57,9 +59,42 @@
                                         </v-expansion-panel-content>
                                     </v-expansion-panel>
                                 </v-expansion-panels>
+                                <!-- Ingredient-Menu -->
+                                <div class="ingredient-postion" id="ingredient-side-menu-div">
+                                    <v-menu
+                                        transition="slide-y-transition"
+                                        bottom
+                                        offset-y="true">
+                                        <template v-slot:activator="{ on, attrs }">
+                                            <v-btn
+                                                class="ingredient-side-menu"
+                                                v-bind="attrs"
+                                                v-on="on">
+                                                <v-icon>mdi-arrow-left-bold</v-icon>
+                                            </v-btn>
+                                        </template>
+                                        <v-list>
+                                            <v-list-item
+                                            v-for="ingredient in ingredients" 
+                                            :key=ingredient>
+                                                <v-row>                                                                
+                                                    <v-col class="item-property-col">                                                                     
+                                                        <div>{{ingredient.name}}</div>                                                               
+                                                    </v-col>                                                             
+                                                    <v-col>                                                                    
+                                                        <div>{{ingredient.portion}}</div>
+                                                    </v-col>
+                                                    <v-col>                                                                    
+                                                        <div>{{ingredient.measurement}}</div>
+                                                    </v-col>
+                                                </v-row> 
+                                            </v-list-item>
+                                        </v-list>
+                                    </v-menu>
+                                </div>
                                 <!-- Beschreibung -->
                                 <v-expansion-panels accordion>
-                                    <v-expansion-panel class="expansion-panel-general">
+                                    <v-expansion-panel class="expansion-panel-general" @click="showSideMenuIfDescriptionOpen">
                                         <v-expansion-panel-header>Zubereitung</v-expansion-panel-header>
                                         <v-expansion-panel-content>
                                             <hr>
@@ -86,12 +121,7 @@
                                                     <v-row>
                                                         <div v-for="tag in tags" :key="tag">                                                    
                                                             <v-col>
-                                                                <v-text-field 
-                                                                    label="Name"
-                                                                    :value="tag.name"
-                                                                    id="detail-Recipe-Recipe-Description"
-                                                                    readonly
-                                                                    outlined/>
+                                                                <a class="tag" >{{tag.name}}</a>
                                                             </v-col>                                                    
                                                         </div>
                                                     </v-row>
@@ -142,6 +172,7 @@ var vueModel = {
             ingredients: [],
             tags:[],
             images: [],
+            ingredientExpansionPanel: [0,2]
         }
     },
     async mounted(){
@@ -153,6 +184,9 @@ var vueModel = {
             document.getElementById("loadingCircle").style.display = "none";
             document.getElementById("recipeDetailCard-Id").style.display = "inline"
         }          
+
+        document.getElementById("ingredient-side-menu-div").style.display = "none"
+
         const currentURL = new URL(document.location.href);
         var id = currentURL.searchParams.get("recipeId");
         var recipe = this.$store.getters.getSelectedRecipe(id);   
@@ -224,6 +258,20 @@ var vueModel = {
         editItem(){
             console.log("edit");
         },
+        showSideMenuIfIngredientOpen(event){
+            if(event.target.classList.contains('v-expansion-panel-header--active')) {
+                document.getElementById("ingredient-side-menu-div").style.display = "inline"
+            } else {
+                document.getElementById("ingredient-side-menu-div").style.display = "none"
+            }
+        },
+        showSideMenuIfDescriptionOpen(event){
+            if(!event.target.classList.contains('v-expansion-panel-header--active')) {
+                document.getElementById("ingredient-side-menu-div").style.display = "inline"
+            } else {
+                document.getElementById("ingredient-side-menu-div").style.display = "none"
+            }
+        }
     },
     props:[],
     components:{
