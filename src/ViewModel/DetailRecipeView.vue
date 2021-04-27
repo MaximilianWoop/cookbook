@@ -21,7 +21,6 @@
                                 <v-col>
                                     <div class="h2" style="padding:5px">{{this.name}}</div>
                                 </v-col>
-                                <v-spacer></v-spacer>
                                 <v-col>
                                     <div class="h2" style="padding:5px; float:right">{{this.duration}}</div>
                                 </v-col>
