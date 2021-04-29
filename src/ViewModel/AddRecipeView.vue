@@ -354,6 +354,7 @@ var vueModel = {
                     this.snackbar = true;
                     this.snackbarText = "Rezept gespeichert."
                     this.snackbarColor = "#2f810e"
+                    setTimeout(function() {window.location.href = "/cookbookview"},1000);
                 }   
                 else{
                     this.snackbar = true;

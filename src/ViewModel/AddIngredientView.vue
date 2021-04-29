@@ -53,6 +53,9 @@
                                 </v-btn>
                             </v-col>                            
                         </v-row>
+                        <v-snackbar v-model="snackbar" :timeout="4000" :color="snackbarColor">
+                            <span>{{snackbarText}}</span>
+                        </v-snackbar>
                     </v-card>
                 </v-row>
             </v-col>
@@ -80,6 +83,10 @@ var vueModel = {
             imageItems:[],
             selectedImage: 0,
             cameraDialog: false,
+            //snackbar
+            snackbar: false,
+            snackbarText: '',
+            snackbarColor: '',
         }
     },
     async mounted(){
@@ -108,10 +115,15 @@ var vueModel = {
                 ingredient.images = images;
                 //create ingredient
                 helper.createIngredient(ingredient);
-                setTimeout(function() {window.location.href = "/cookbookview"},500);
+                this.snackbar = true;
+                this.snackbarText = "Rezept gespeichert."
+                this.snackbarColor = "#2f810e"
+                setTimeout(function() {window.location.href = "/cookbookview"},1000);
             }
             catch(exception){
-                console.log("error by creating an ingredient");
+                this.snackbar = true;
+                this.snackbarText = "Es ist ein Fehler beim Speichern aufgetreten."
+                this.snackbarColor = "#910a0a"
             }
         },
         toggleCamDialog(){
