@@ -1,6 +1,6 @@
-$blue-color: #2196F3;
-$green-color: rgb(23, 128, 58); ;
-$grey-color: #8f9499;
+$blue-color: #4ba4ec;
+$green-color: rgb(27, 168, 74); ;
+$grey-color: #c5ccd3;
 
 .loginButton{
     background: $blue-color !important;
@@ -12,5 +12,9 @@ $grey-color: #8f9499;
 
 .saveButton{
     background: $green-color !important;
+}
+
+.addButton{
+    background: $blue-color !important;
 }
 

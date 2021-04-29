@@ -186,14 +186,14 @@
 
 import helper from '@/Helper/dataController'
 import service from '@/Helper/serviceHelper'
-import ImageGallery from '@/ViewModel/Elements/imageGallery'
+import ImageGallery from '@/ViewModel/Elements/Images/imageGallery'
 
 var vueModel = {
     data(){
         return{
             //Datatable
             headers: [
-                { text: 'Index', value: 'ingredientID' },
+                // { text: 'Index', value: 'ingredientID' },
                 { text: 'Name', value: 'name' },
                 { text: 'Menge', value: 'portion' },
                 { text: 'Einheit', value: 'measurement' },
@@ -261,6 +261,7 @@ var vueModel = {
                 }
                 counter++;
             });
+            document.getElementById("ingredientNameId").value ="";
             document.getElementById("ingredientDurationId").value ="";
             document.getElementById("ingredientPortionId").value ="";
         },
@@ -306,7 +307,7 @@ var vueModel = {
                 var ingredientCounter;
                 for(ingredientCounter = 0; ingredientCounter < this.listOfSelecetIngredient.length; ingredientCounter++){
                     ingredients[ingredientCounter] = new Object();                 
-                    ingredients[ingredientCounter].id= this.listOfSelecetIngredient[ingredientCounter].ingredientID;
+                    ingredients[ingredientCounter].ingredientId= this.listOfSelecetIngredient[ingredientCounter].ingredientID;
                     ingredients[ingredientCounter].name = this.listOfSelecetIngredient[ingredientCounter].name;
                     ingredients[ingredientCounter].portion = this.listOfSelecetIngredient[ingredientCounter].portion; 
                     ingredients[ingredientCounter].measurement = this.listOfSelecetIngredient[ingredientCounter].measurement;

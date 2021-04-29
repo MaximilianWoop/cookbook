@@ -63,7 +63,7 @@
 <script defer>
 
 import helper from '@/Helper/dataController'
-import ImageGallery from '@/ViewModel/Elements/imageGallery'
+import ImageGallery from '@/ViewModel/Elements/Images/imageGallery'
 
 function setCamSource(ref, stream){
     document.querySelector('video').srcObject = stream;

@@ -1,22 +1,15 @@
 <template>
     <div>
-        <v-dialog persistent>
-            <template>
-                <v-card class="addTag-Dialog">
-                    <v-card-title>Tag hinzufügen</v-card-title>
-                    <v-row>
-                        <v-col>
-                            <p>test</p>
-                            <a>test2</a>
-                        </v-col>
-                    </v-row>
-                </v-card>
-            </template>
-        </v-dialog>
+        <saveButton></saveButton>
+        <cancelButton></cancelButton>
     </div>
 </template>
 
 <script>
+
+import saveButton from '@/ViewModel/Elements/Buttons/saveButton'
+import cancelButton from '@/ViewModel/Elements/Buttons/cancelButton'
+
 export default {
   data(){
         return{
@@ -27,7 +20,10 @@ export default {
     computed:{},
     methods:{},
     props:[],
-    components:{},
+    components:{
+        'saveButton':saveButton,
+        'cancelButton': cancelButton
+    },
 }
 </script>
 
