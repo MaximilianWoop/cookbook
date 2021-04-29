@@ -307,7 +307,7 @@ var vueModel = {
                 var ingredientCounter;
                 for(ingredientCounter = 0; ingredientCounter < this.listOfSelecetIngredient.length; ingredientCounter++){
                     ingredients[ingredientCounter] = new Object();                 
-                    ingredients[ingredientCounter].ingredientId= this.listOfSelecetIngredient[ingredientCounter].ingredientID;
+                    ingredients[ingredientCounter].ingredientID= this.listOfSelecetIngredient[ingredientCounter].ingredientID;
                     ingredients[ingredientCounter].name = this.listOfSelecetIngredient[ingredientCounter].name;
                     ingredients[ingredientCounter].portion = this.listOfSelecetIngredient[ingredientCounter].portion; 
                     ingredients[ingredientCounter].measurement = this.listOfSelecetIngredient[ingredientCounter].measurement;
