@@ -137,14 +137,13 @@
                                             <div v-for="(item, index) in this.images" :key="index">
                                                 <v-row> 
                                                     <v-img v-bind:src="'data:image/jpeg;base64,'+ item.image"/>
-                                                    <!-- <ImageGallery :items="images"/> -->
                                                 </v-row>
                                             </div>
                                         </v-expansion-panel-content>                                    
                                     </v-expansion-panel>                                
                                 </v-expansion-panels>
                             </v-row>
-                        </v-card>
+                        </v-card>                        
                     </v-card>
                 </v-row>
             </v-col>
@@ -250,6 +249,9 @@ var vueModel = {
     },
     computed:{},
     methods:{
+        test(){
+            console.log(this.images[0].image);
+        },
         deleteItem(){
             helper.deleteRecipe(this.id)
             setTimeout(function() {window.location.href = "/cookbookview"},500);

@@ -336,7 +336,7 @@ var vueModel = {
             for(imageCounter = 0; imageCounter < this.imageItems.length; imageCounter++){
                 images[imageCounter] = new Object();  
                 var temp = this.imageItems[imageCounter].image;  
-                // temp = temp.substring(23);       
+                temp = temp.substring(23);       
                 images[imageCounter].image = temp;         
             } 
             //Put all informations to one recipe together
