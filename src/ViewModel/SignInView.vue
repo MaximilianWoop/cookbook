@@ -13,29 +13,27 @@
                 <v-col>
                   <v-text-field
                     clearable
-                    label="Benutzername"></v-text-field>
+                    id="signIn-username-textfield"
+                    label="Benutzername"/>
                 </v-col>
               </v-row>
               <v-row no-gutters>
                 <v-col>
                   <v-text-field
                     clearable
+                    id="signIn-password-textfield"
                     label="Passwort"
-                    append-icon="mdi-eye"></v-text-field>
+                    append-icon="mdi-eye"/>
                 </v-col>
               </v-row>
               <v-row no-gutters>
                 <v-col></v-col>
                 <v-col style="justify-content: center;text-align:center">
                   <v-btn                
-                    href="/cookbookview"
+                    @click="login"
                     class="loginButton">Login</v-btn>
                 </v-col>
-                <v-col>
-                  <v-btn                
-                    @click="login"
-                    class="loginButton">test</v-btn>
-                </v-col>
+                <v-col></v-col>
               </v-row>
           </v-card>
         </v-row>
@@ -52,7 +50,11 @@ export default {
   }),
   methods:{
      async login(){
-        var authorized = await helper.getLogin();
+        var user = new Object();
+        user.username = document.getElementById("signIn-username-textfield").value;
+        user.password = document.getElementById("signIn-password-textfield").value;
+        console.log(user);
+        var authorized = await helper.getLogin(user);
           if(authorized == true){
             setTimeout(function() {window.location.href = "/cookbookview"},1000);
           } else{

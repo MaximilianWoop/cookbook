@@ -71,9 +71,6 @@ async function getTagsFromURL(ref){
 
 async function getLogin(user){
     const url = "https://cookbook.ryotecx.de/api.php/login"
-    user = new Object();
-    user.username = "test2";
-    user.password = "1234";
     const settings = {
         method: 'POST',
         headers: {
