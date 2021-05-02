@@ -36,6 +36,9 @@ async function deleteIngredient(id){
     console.log(id);
 }
 
+
+// https://cookbook.ryotecx.de/api.php/recipe?recipeID=id
+
 //Get data 
 async function getRecipesFromURL(ref){
     return await fetch('https://cookbook.ryotecx.de/api.php/recipe')
@@ -44,6 +47,13 @@ async function getRecipesFromURL(ref){
             ref.$store.dispatch('setRecipe',recipe);
         }));
 }
+// async function getRecipeWithIdFromURL(ref, id){
+//     return await fetch('https://cookbook.ryotecx.de/api.php/recipe?recipeID=' + id)
+//         .then(response => response.json())
+//         .then(data => data.forEach((recipe) => {  
+//             ref.$store.dispatch('setRecipe',recipe);
+//         }));
+// }
 async function getIngredientsFromURL(ref){
     return await fetch('https://cookbook.ryotecx.de/api.php/ingredient')
         .then(response => response.json())
@@ -59,6 +69,34 @@ async function getTagsFromURL(ref){
         }));
 }
 
+async function getLogin(user){
+    const url = "https://cookbook.ryotecx.de/api.php/login"
+    user = new Object();
+    user.username = "test2";
+    user.password = "1234";
+    const settings = {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(user),
+    };
+    try{
+        const response = await fetch(url, settings);
+        if(response.status == 200){
+            return true;
+        }    
+        else{
+            return false;
+        }   
+    }
+    catch(exception){
+        console.log(exception);
+        return -1;
+    }
+}
+
 //export data
 var helper = {
     createRecipe,
@@ -70,5 +108,6 @@ var helper = {
     createIngredient,
     updateIngredient,
     deleteIngredient,
+    getLogin,
 }
 export default helper;

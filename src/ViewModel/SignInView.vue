@@ -31,7 +31,11 @@
                     href="/cookbookview"
                     class="loginButton">Login</v-btn>
                 </v-col>
-                <v-col></v-col>
+                <v-col>
+                  <v-btn                
+                    @click="login"
+                    class="loginButton">test</v-btn>
+                </v-col>
               </v-row>
           </v-card>
         </v-row>
@@ -41,9 +45,20 @@
 </template>
 
 <script>
+import helper from '@/Helper/dataController'
 export default {
   data: () => ({
     text: '',
   }),
+  methods:{
+     async login(){
+        var authorized = await helper.getLogin();
+          if(authorized == true){
+            setTimeout(function() {window.location.href = "/cookbookview"},1000);
+          } else{
+            console.log("falsch");
+          }      
+     },
+  }
 }
 </script>
