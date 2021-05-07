@@ -15,7 +15,6 @@ async function deleteRecipe(id){
     request.open('DELETE','https://cookbook.ryotecx.de/api.php/recipe',true);
     request.setRequestHeader("Content-Type", "application/json");
     var recipeJson = "{\"recipeID\":" + id + "}";
-    console.log(recipeJson);
     request.send(recipeJson); 
 }
 //CRUD functions for ingredient
@@ -24,7 +23,6 @@ async function createIngredient(Ingredient){
     request.open('POST','https://cookbook.ryotecx.de/api.php/ingredient');
     request.setRequestHeader("Content-Type", "application/json");
     var ingredientJson = JSON.stringify(Ingredient);
-    console.log(ingredientJson);
     request.send(ingredientJson);
 }
 async function updateIngredient(Ingredient){
@@ -36,24 +34,27 @@ async function deleteIngredient(id){
     console.log(id);
 }
 
-
-// https://cookbook.ryotecx.de/api.php/recipe?recipeID=id
-
-//Get data 
-async function getRecipesFromURL(ref){
+//Get data from backend
+async function getRecipesFromURL(){
     return await fetch('https://cookbook.ryotecx.de/api.php/recipe')
-        .then(response => response.json())
+        .then(response => {
+            response.json();
+        })
+        .then(data => data.forEach((recipe) => {            
+            console.log(recipe);
+        })
+    );
+}
+async function getRecipeWithIdFromURL(id){
+    return await fetch('https://cookbook.ryotecx.de/api.php/recipe?recipeID=' + id)
+        .then(response => {
+            response.json();
+        })
         .then(data => data.forEach((recipe) => {  
-            ref.$store.dispatch('setRecipe',recipe);
+            console.log(recipe);
         }));
 }
-// async function getRecipeWithIdFromURL(ref, id){
-//     return await fetch('https://cookbook.ryotecx.de/api.php/recipe?recipeID=' + id)
-//         .then(response => response.json())
-//         .then(data => data.forEach((recipe) => {  
-//             ref.$store.dispatch('setRecipe',recipe);
-//         }));
-// }
+
 async function getIngredientsFromURL(ref){
     return await fetch('https://cookbook.ryotecx.de/api.php/ingredient')
         .then(response => response.json())
@@ -106,5 +107,6 @@ var helper = {
     updateIngredient,
     deleteIngredient,
     getLogin,
+    getRecipeWithIdFromURL,
 }
 export default helper;

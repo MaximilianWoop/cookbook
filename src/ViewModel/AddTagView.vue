@@ -1,14 +1,14 @@
 <template>
     <div>
-        <saveButton></saveButton>
-        <cancelButton></cancelButton>
+        <v-btn
+            @click="test"
+        >test</v-btn>
     </div>
 </template>
 
 <script>
 
-import saveButton from '@/ViewModel/Elements/Buttons/saveButton'
-import cancelButton from '@/ViewModel/Elements/Buttons/cancelButton'
+import recipeController from '@/Helper/Curl/RecipeController'
 
 export default {
   data(){
@@ -18,12 +18,22 @@ export default {
     },
     async mounted(){},
     computed:{},
-    methods:{},
-    props:[],
-    components:{
-        'saveButton':saveButton,
-        'cancelButton': cancelButton
+    methods:{
+        async test(){
+            var recipe = new Object();
+            recipe.name = "name";              
+            recipe.duration = 123;
+            recipe.description = "description";
+            recipe.ingredients = null;
+            recipe.tags = null;
+            recipe.images = null;
+            recipe.temperature = null;
+            var temp = await recipeController.createRecipe(recipe);
+            console.log(temp);
+        }
     },
+    props:[],
+    components:{},
 }
 </script>
 
