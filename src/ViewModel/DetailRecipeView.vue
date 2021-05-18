@@ -153,7 +153,7 @@
 
 <script defer>
 
-import helper from '@/Helper/dataController'
+import RecipeController from '@/Helper/Getter/RecipeController'
 import ImageGallery from '@/ViewModel/Elements/Images/imageGallery'
 
 var vueModel = {
@@ -178,7 +178,7 @@ var vueModel = {
         if(this.$store.state.recipes.length<=0){
             document.getElementById("recipeDetailCard-Id").style.display = "none"
             document.getElementById("loadingCircle").style.display = "inline";
-            await helper.getRecipesFromURL(this);
+            await RecipeController.getRecipesFromURL(this);
             document.getElementById("loadingCircle").style.display = "none";
             document.getElementById("recipeDetailCard-Id").style.display = "inline"
         }          

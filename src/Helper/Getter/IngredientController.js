@@ -19,3 +19,10 @@ async function getIngredientWithIdFromURL(id){
             console.log(ingredient);
         }));
 }
+
+//Funktionen Exportieren
+var getIngredientController = {
+    getIngredientsFromURL,
+    getIngredientWithIdFromURL,
+}
+export default getIngredientController;

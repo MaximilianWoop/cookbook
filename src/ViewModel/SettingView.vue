@@ -66,7 +66,9 @@
 </template>
 
 <script>
-import helper from '@/Helper/dataController'
+import RecipeController from '@/Helper/Getter/RecipeController'
+import IngerdientController from '@/Helper/Getter/IngerdientController'
+import TagController from '@/Helper/Getter/TagController'
 export default {
   data(){
         return{
@@ -94,15 +96,15 @@ export default {
         document.getElementById("setting-Card-Id").style.display = "none";
         if(this.$store.state.recipes.length === 0)
         {
-            await helper.getRecipesFromURL(this);
+            await RecipeController.getRecipesFromURL(this);
         }
         if(this.$store.state.ingredients.length === 0)
         {
-            await helper.getIngredientsFromURL(this);
+            await IngerdientController.getIngredientsFromURL(this);
         }
         if(this.$store.state.tags.length === 0)
         {
-            await helper.getTagsFromURL(this);
+            await TagController.getTagsFromURL(this);
         }
         document.getElementById("loadingCircle").style.display = "none";
         document.getElementById("setting-Card-Id").style.display = "inline";

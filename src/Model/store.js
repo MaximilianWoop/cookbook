@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import helper from '../Helper/dataController'
 
 Vue.use(Vuex);
 
@@ -20,11 +19,6 @@ export default new Vuex.Store({
         setTag(state, tag){
             state.tags.push(tag);
         },
-        deleteItem(state, recipe){
-            helper.deleteRecipe();
-            console.log(state);
-            console.log(recipe);
-        }
     },
     actions:{
         setRecipe: ({commit, state}, recipe) => {
@@ -38,20 +32,6 @@ export default new Vuex.Store({
         setTag: ({commit, state}, tag) =>{
             commit('setTag', tag);
             return state.tag;
-        }
-    },
-    getters:{
-        // ingredientLength: state => {
-        //     return Object.keys(state.ingredients).length;
-        // },
-        // recipeLength: state => {
-        //     return state.recipes.length;
-        // },
-        getSelectedRecipe: (state) => (id) => {
-            return state.recipes.find(recipe => recipe.recipeID == id)
-        },
-        getSelectedIngredient: (state) => (id) => {
-            return state.ingredients.find(ingredient => ingredient.ingredientID == id)
         }
     },
 })

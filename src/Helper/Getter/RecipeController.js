@@ -19,3 +19,10 @@ async function getRecipeWithIdFromURL(id){
             console.log(recipe);
         }));
 }
+
+//Funktionen Exportieren
+var getRecipeController = {
+    getRecipesFromURL,
+    getRecipeWithIdFromURL,
+}
+export default getRecipeController;

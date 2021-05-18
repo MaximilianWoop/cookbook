@@ -19,3 +19,10 @@ async function getTagWithIdFromURL(id){
             console.log(tag);
         }));
 }
+
+//Funktionen Exportieren
+var getTagController = {
+    getTagsFromURL,
+    getTagWithIdFromURL,
+}
+export default getTagController;

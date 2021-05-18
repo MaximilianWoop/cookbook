@@ -77,7 +77,9 @@
 
 <script defer>
 
-import helper from '@/Helper/dataController'
+import RecipeController from '@/Helper/Getter/RecipeController'
+import IngerdientController from '@/Helper/Getter/IngerdientController'
+import TagController from '@/Helper/Getter/TagController'
 
 var vueModel = {
     data(){
@@ -91,7 +93,7 @@ var vueModel = {
         if(this.$store.state.recipes.length === 0)
         {
             document.getElementById("loadingCircle").style.display = "inline";
-            await helper.getRecipesFromURL(this);
+            await RecipeController.getRecipesFromURL(this);
             document.getElementById("loadingCircle").style.display = "none";
         }                 
     },

@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import helper from '@/Helper/dataController'
+import UserController from '@/Helper/Getter/UserController'
 export default {
   data: () => ({
     text: '',
@@ -54,7 +54,7 @@ export default {
         user.username = document.getElementById("signIn-username-textfield").value;
         user.password = document.getElementById("signIn-password-textfield").value;
         console.log(user);
-        var authorized = await helper.getLogin(user);
+        var authorized = await UserController.getLogin(user);
           if(authorized == true){
             setTimeout(function() {window.location.href = "/cookbookview"},1000);
           } else{

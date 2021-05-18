@@ -27,38 +27,19 @@ async function createRecipe(recipe){
     const url = "https://cookbook.ryotecx.de/api.php/recipe";
     const method = "POST";
     const body = JSON.stringify(recipe);
-    console.log(body);
     return curlFunction(url,method,body);
 }
 async function updateRecipe(recipe){
-    console.log("update");
-    console.log(recipe);
+    const url = "https://cookbook.ryotecx.de/api.php/recipe";
+    const method = "UPDATE";
+    const body = JSON.stringify(recipe);;
+    return curlFunction(url,method,body);
 }
 async function deleteRecipe(id){
-    console.log("delete");
-    console.log(id);
-    // const url = "https://cookbook.ryotecx.de/api.php/recipe"
-    // const settings = {
-    //     method: 'DELETE',
-    //     headers: {
-    //         Accept: 'application/json',
-    //         'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify(recipe),
-    // };
-    // try{
-    //     const response = await fetch(url, settings);
-    //     if(response.status == 200){
-    //         return true;
-    //     }    
-    //     else{
-    //         return false;
-    //     }   
-    // }
-    // catch(exception){
-    //     console.log(exception);
-    //     return -1;
-    // }
+    const url = "https://cookbook.ryotecx.de/api.php/recipe?recipeID=" + id;
+    const method = "DELETE";
+    const body = "";
+    return curlFunction(url,method,body);
 }
 
 //Funktionen Exportieren
@@ -66,6 +47,7 @@ var curlRecipeController = {
     createRecipe,
     updateRecipe,
     deleteRecipe,
+    curlFunction,
 }
 export default curlRecipeController;
 
