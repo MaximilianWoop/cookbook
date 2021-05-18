@@ -13,7 +13,6 @@
                             bottom>
                             <template v-slot:activator="{ on, attrs }">
                                 <v-btn
-                                    style="background:rgba(2, 76, 140, 1);"
                                     v-bind="attrs"
                                     v-on="on">
                                     <v-icon>mdi-plus</v-icon>
@@ -95,3 +94,27 @@ export default {
     components:{},
 }
 </script>
+
+<style lang="scss" scoped>
+.row + .row{
+    margin-top: 0;
+}
+.nav-drawer-content-row{
+    margin-top: 0px;
+    margin-bottom: 10px;
+    .nav-drawer-content-row-col{
+        padding-top:0;
+        & .v-list-item__title{
+            font-size: 1rem;
+            font-weight: bold;
+        }    
+    }
+}
+
+.v-list-item__icon{
+    margin-right: 5px;
+}
+.v-navigation-drawer {
+    max-width: 200px;
+}    
+</style>

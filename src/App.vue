@@ -1,27 +1,36 @@
 <template>
   <div>    
-    <router-link to="/"></router-link>   
-    <div id="loadingCircle">
-      <div>
-          <div class="loader-postion">
-              <div class="loader"></div>
-          </div>                                
-      </div>
-    </div> 
-    <router-view/>
+    <Home/>
   </div>
 </template>
 
-<style>
-  #loadingCircle{
-      display: none;
+<script>
+import Home from './Views/Home.vue';
+
+export default {
+  components:{
+    Home,
   }
-  .loader-postion{
-    -webkit-transform: translate(-50%,-50%);
-    transform: translate(-50%,-50%);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    z-index: 10;
-  }
+}
+</script>
+
+
+<style lang="scss">
+    *,
+    *::before,
+    *::after{
+        box-sizing: border-box;
+    }
+
+    html, body{
+      padding: 0;
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .v-responsive__sizer{
+      flex: 0 !important;
+    }
 </style>
+
+
