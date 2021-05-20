@@ -31,7 +31,7 @@ async function createRecipe(recipe){
 }
 async function updateRecipe(recipe){
     const url = "https://cookbook.ryotecx.de/api.php/recipe";
-    const method = "UPDATE";
+    const method = "PUT";
     const body = JSON.stringify(recipe);;
     return curlFunction(url,method,body);
 }
@@ -48,6 +48,7 @@ var curlRecipeController = {
     updateRecipe,
     deleteRecipe,
     curlFunction,
+    test,
 }
 export default curlRecipeController;
 

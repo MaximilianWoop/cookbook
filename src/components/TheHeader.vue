@@ -1,39 +1,20 @@
 <template>
-    <div class="nav-bar" data-app>
+    <div data-app >
         <!-- Header -->
         <v-row>
             <v-col>
                 <v-card>
-                    <v-toolbar>
-                        <v-app-bar-nav-icon @click="drawer = true" large/>
-                        <v-toolbar-title class="h1">Kochbuch</v-toolbar-title>
+                    <v-toolbar style="background: rgba(2, 76, 140, 1); color: white">
+                        <v-app-bar-nav-icon @click="drawer = true" large style="color: white"/>
+                        <strong class="headerTitle">Kochbuch</strong>
                         <v-spacer></v-spacer>
-                        <v-menu
-                            transition="slide-y-transition"
-                            bottom>
-                            <template v-slot:activator="{ on, attrs }">
-                                <v-btn
-                                    v-bind="attrs"
-                                    v-on="on">
-                                    <v-icon>mdi-plus</v-icon>
-                                </v-btn>
-                            </template>
-                            <v-list>
-                                <v-list-item
-                                v-for="item in addItems"
-                                :key="item.title"
-                                link
-                                :to="item.route">
-                                    <v-list-item-title>{{ item.title }}</v-list-item-title>
-                                </v-list-item>
-                            </v-list>
-                        </v-menu>
+                        <!-- <AddItemMenu/> -->
                     </v-toolbar>
                 </v-card>
             </v-col>
         </v-row>
         <!-- Sidebar -->
-        <v-navigation-drawer v-model="drawer" absolute temporary dark>
+        <v-navigation-drawer v-model="drawer" absolute temporary style="background: rgba(2, 76, 140, 1);">
             <v-list class="py-0" nav dense>
                 <!-- User informations -->
                 <v-list-item two-line :class="mini && 'px-0'">
@@ -58,7 +39,8 @@
                         <v-icon>{{item.icon}}</v-icon>
                     </v-list-item-icon>
                     <v-list-item-content>
-                        <v-list-item-title id="item.title">{{item.title}}</v-list-item-title>
+                        <router-link style="color:white;text-decoration: none;font-size:15px" :to="item.route">{{item.title}}</router-link>
+                        <!-- <v-list-item-title id="item.title">{{item.title}}</v-list-item-title> -->
                     </v-list-item-content>
                 </v-list-item>
             </v-list>
@@ -67,6 +49,7 @@
 </template>
 
 <script>
+// import AddItemMenu from '../components/AddItemMenu.vue';
 export default {
     data(){
         return{
@@ -74,28 +57,29 @@ export default {
             mini: false,
             tagDialog: false,
             MenuPoints: [
-                {title: 'Übersicht', icon: 'mdi-clipboard-list-outline', route: '/cookbookview'},
-                {title: 'Mein Account', icon: 'mdi-account', route: ''},   
-                {title: 'Rezept hinzufügen', icon: 'mdi-notebook-edit-outline', route: '/AddRecipeView'},
-                {title: 'Zutat hinzufügen', icon: 'mdi-bottle-tonic-plus-outline', route: '/AddIngredientView'}, 
-                {title: 'Einstellungen', icon: 'mdi-cog', route: '/SettingView'},   
+                {title: 'Übersicht', icon: 'mdi-clipboard-list-outline',route: '/home'},
+                {title: 'Mein Account', icon: 'mdi-account',route: '/user'},   
+                {title: 'Rezept hinzufügen', icon: 'mdi-notebook-edit-outline', route: '/addRecipe'},
+                {title: 'Zutat hinzufügen', icon: 'mdi-bottle-tonic-plus-outline',route: '/addIngredient'}, 
+                {title: 'Tag hinzufügen', icon: 'mdi-code-tags',route: '/addTag'}, 
+                {title: 'Einstellungen', icon: 'mdi-cog',route: '/settings'},   
             ],
-            addItems: [ 
-                {title: 'Rezept', route: '/AddRecipeView'},
-                {title: 'Zutat', route: '/AddIngredientView'},
-                {title: 'Tag', route: '/AddTagView'}
-            ]
         }
     },
     async mounted(){},
     computed:{},
     methods: {},
     props:[],
-    components:{},
+    components: {
+        // AddItemMenu,
+    }
 }
 </script>
 
 <style lang="scss" scoped>
+.headerTitle{
+    font-size: 1.3rem;
+}
 .row + .row{
     margin-top: 0;
 }
@@ -106,13 +90,20 @@ export default {
         padding-top:0;
         & .v-list-item__title{
             font-size: 1rem;
-            font-weight: bold;
-        }    
+            font-weight: bold;     
+            color: white;       
+        }   
     }
+}
+.v-list-item__content{
+    color: white;
 }
 
 .v-list-item__icon{
     margin-right: 5px;
+    & .v-icon{
+        color: white;
+    }
 }
 .v-navigation-drawer {
     max-width: 200px;

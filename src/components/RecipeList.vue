@@ -3,10 +3,11 @@
         <v-list three-line>
             <template v-for="item in recipes">
                 <v-list-item 
-                    :key="item.name">
+                    :key="item.name"
+                    :href="'/detailRecipe/'+item.recipeID">
                     <v-list-item-content>
                         <v-card outlined>                           
-                            <v-img class="image" v-bind:src="item.images[0].src">
+                            <v-img class="image" src="https://picsum.photos/202">
                                 <v-row>
                                     <v-col>
                                         <div class="name">{{item.name}}</div>  
@@ -18,7 +19,7 @@
                                     </v-col>
                                 </v-row>                               
                             </v-img>  
-                            <div class="tag__container">
+                            <!-- <div class="tag__container">
                                 <v-row>
                                     <v-col v-if="item.tags[0] != null">
                                         <a class="tag" v-if="item.tags != null">{{item.tags[0].name}}</a>
@@ -41,7 +42,7 @@
                                         <a class="tag" v-else></a>
                                     </v-col> 
                                 </v-row>
-                            </div>                                                       
+                            </div>                                                        -->
                         </v-card>
                     </v-list-item-content>
                 </v-list-item>
@@ -89,41 +90,44 @@ export default{
             .heart__button{
                 height: 30px;
                 width: 30px;
-                background-color: rgb(247, 247, 247);
+                // background-color: rgb(255, 255, 255);
                 opacity: 0.85;
                 float: right;
                 color:rgb(230, 0, 0);
             }
             .name{
-                background-color: rgb(247, 247, 247);
+                background-color: rgb(255, 255, 255);
                 opacity: 0.85;
                 padding: 5px;    
                 font-size: 1rem;
                 font-weight: bold;
                 line-height: 20px;
+                border-bottom: 2px solid rgba(2, 76, 140, 1);
+                border-right: 2px solid rgba(2, 76, 140, 1);
+                border-bottom-right-radius: 15px;
             }
         }
     }    
 }
-.tag__container{
-    .row{
-        margin: 0;
-        .col{
-            padding: 1px;   
-            flex-grow: 0;    
-            .tag{
-                border: 1px solid rgba(2, 76, 140, 1);
-                border-radius: 15px;
-                background: rgba(2, 76, 140, 1); 
-                color: whitesmoke;
-                display: inline-block;
-                font-size: 14px;
-                line-height: 20px;
-                padding: 5px 8px;
-                text-decoration: none;
-                -webkit-font-smoothing: antialiased;
-            } 
-        }
-    }
-}
+// .tag__container{
+//     .row{
+//         margin: 0;
+//         .col{
+//             padding: 1px;   
+//             flex-grow: 0;    
+//             .tag{
+//                 border: 2px solid rgba(2, 76, 140, 1);
+//                 border-radius: 15px;
+//                 // background: rgba(2, 76, 140, 1); 
+//                 color: black;
+//                 display: inline-block;
+//                 font-size: 14px;
+//                 line-height: 20px;
+//                 padding: 5px 8px;
+//                 text-decoration: none;
+//                 -webkit-font-smoothing: antialiased;
+//             } 
+//         }
+//     }
+// }
 </style>
