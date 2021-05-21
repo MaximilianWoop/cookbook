@@ -1,27 +1,30 @@
 <template>
   <div>    
-    <router-link to="/"></router-link>   
-    <div id="loadingCircle">
-      <div>
-          <div class="loader-postion">
-              <div class="loader"></div>
-          </div>                                
-      </div>
-    </div> 
-    <router-view/>
+    <router-view></router-view>
   </div>
 </template>
 
-<style>
-  #loadingCircle{
-      display: none;
-  }
-  .loader-postion{
-    -webkit-transform: translate(-50%,-50%);
-    transform: translate(-50%,-50%);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    z-index: 10;
-  }
+<script>
+export default {}
+</script>
+
+
+<style lang="scss">
+    *,
+    *::before,
+    *::after{
+        box-sizing: border-box;
+    }
+
+    html, body{
+      padding: 0;
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .v-responsive__sizer{
+      flex: 0 !important;
+    }
 </style>
+
+

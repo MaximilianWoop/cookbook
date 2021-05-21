@@ -1,1 +1,15 @@
-<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 87.5 100"><defs><style>.cls-1{fill:#1697f6;}.cls-2{fill:#7bc6ff;}.cls-3{fill:#1867c0;}.cls-4{fill:#aeddff;}</style></defs><title>Artboard 46</title><polyline class="cls-1" points="43.75 0 23.31 0 43.75 48.32"/><polygon class="cls-2" points="43.75 62.5 43.75 100 0 14.58 22.92 14.58 43.75 62.5"/><polyline class="cls-3" points="43.75 0 64.19 0 43.75 48.32"/><polygon class="cls-4" points="64.58 14.58 87.5 14.58 43.75 100 43.75 62.5 64.58 14.58"/></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 1600 1200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(2,0,0,2,0,0)">
+        <g transform="matrix(1.61316,0,0,1.61316,-357.428,-309.189)">
+            <circle cx="469.345" cy="377.083" r="185.417" style="fill:rgb(2,77,144);"/>
+        </g>
+        <g transform="matrix(1.04002e-16,-1.69848,1.64098,1.00481e-16,98.2761,647.07)">
+            <text x="160.119px" y="285.714px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:288px;">K</text>
+        </g>
+        <g transform="matrix(1.00567e-16,1.64238,-1.64676,1.00835e-16,698.497,-4.12899)">
+            <text x="160.119px" y="285.714px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:288px;">B</text>
+        </g>
+    </g>
+</svg>

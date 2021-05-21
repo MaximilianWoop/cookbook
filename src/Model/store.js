@@ -1,57 +1,58 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import helper from '../Helper/dataController'
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
     state:{
+        //Arrays
         recipes:[],
-        ingredients:[],
         tags:[],
+        ingredients:[],
+        //Objects
+        recipe:{},        
+        user:{
+            id: 1,
+            name: 'Maximilian Woop'
+        },
     },
     mutations:{
-        setRecipe(state, recipe){
+        setManyRecipes(state, recipe){
             state.recipes.push(recipe);
         },
-        setIngredient(state, ingredient){
+        setOneRecipe(state, recipe){
+            state.recipe = recipe;
+        },
+        setManyIngredients(state, ingredient){
             state.ingredients.push(ingredient);
         },
-        setTag(state, tag){
+        setManyTags(state, tag){
             state.tags.push(tag);
         },
-        deleteItem(state, recipe){
-            helper.deleteRecipe();
-            console.log(state);
-            console.log(recipe);
-        }
     },
     actions:{
-        setRecipe: ({commit, state}, recipe) => {
-            commit('setRecipe',recipe);
+        setManyRecipes: ({commit, state}, recipe) => {
+            commit('setManyRecipes',recipe);
             return state.recipe;
         },
-        setIngredient: ({commit, state}, ingredient) =>{
-            commit('setIngredient', ingredient);
+        setOneRecipe: ({commit, state}, recipe) => {
+            commit('setOneRecipe',recipe);
+            return state.recipe;
+        },
+        setManyIngredients: ({commit, state}, ingredient) => {
+            commit('setManyIngredients',ingredient);
             return state.ingredient;
         },
-        setTag: ({commit, state}, tag) =>{
-            commit('setTag', tag);
+        setManyTags: ({commit, state}, tag) => {
+            commit('setManyTags',tag);
             return state.tag;
-        }
+        },
     },
     getters:{
-        // ingredientLength: state => {
-        //     return Object.keys(state.ingredients).length;
-        // },
-        // recipeLength: state => {
-        //     return state.recipes.length;
-        // },
-        getSelectedRecipe: (state) => (id) => {
-            return state.recipes.find(recipe => recipe.recipeID == id)
-        },
-        getSelectedIngredient: (state) => (id) => {
-            return state.ingredients.find(ingredient => ingredient.ingredientID == id)
+        getInitials(state){
+            const splittedName = state.user.name.split(' ');
+            return splittedName[0].charAt(0) + splittedName[1].charAt(0);
         }
     },
+    modules:{},
 })

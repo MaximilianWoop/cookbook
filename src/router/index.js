@@ -1,64 +1,74 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import SignInView from '../Views/SignInView.vue'
-import CookBookView from '../Views/CookBookView.vue'
-import RecipeDetailView from '../Views/DetailRecipeView.vue'
-import IngredientDetailView from '../Views/DetailIngredientView.vue'
-import AddRecipeView from '../Views/AddRecipeView.vue'
-import AddIngredientView from '../Views/AddIngredientView.vue'
-import AddTagView from '../Views/AddTagView.vue'
-import SettingView from '../Views/SettingView.vue'
+
+import Login from '@/Views/Login.vue'
+import Home from '@/Views/Home.vue'
+import PageNotFound from '@/Views/PageNotFound.vue'
+import DetailRecipe from '@/Views/DetailRecipe.vue'
+import DetailRecipeIngredients from '@/Views/recipe/Ingredients.vue'
+import DetailRecipeDescription from '@/Views/recipe/Description.vue'
+import DetailRecipeImages from '@/Views/recipe/Images.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
-    name: 'SignInView',
-    component: SignInView
+    path: '/login',
+    component: Login,
   },
   {
-    path: '/cookbookview',
-    name: 'CookBookView',
-    component: CookBookView,
+    path: '/home',
+    component: Home,
+  },
+  //Loading Page async to save Mobiledata
+  {
+    path: '/addRecipe',
+    component: () => import(/*webpackChunkName: "addRecipe"*/ '../Views/AddRecipe.vue'),
   },
   {
-    path: '/DetailRecipeView',
-    name: 'DetailRecipeView',
-    component: RecipeDetailView
+    path: '/addIngredient',
+    component: () => import(/*webpackChunkName: "AddIngredient"*/ '../Views/AddIngredient.vue'),
   },
   {
-    path: '/DetailIngredientView',
-    name: 'DetailIngredientView',
-    component: IngredientDetailView
+    path: '/addTag',
+    component: () => import(/*webpackChunkName: "AddTag"*/ '../Views/AddTag.vue'),
   },
   {
-    path: '/AddRecipeView',
-    name: 'AddRecipeView',
-    component: AddRecipeView
+    path: '/settings',
+    component: () => import(/*webpackChunkName: "Settings"*/ '../Views/Settings.vue'),
   },
   {
-    path: '/AddIngredientView',
-    name: 'AddIngredientView',
-    component: AddIngredientView
+    path: '/user',
+    component: () => import(/*webpackChunkName: "User"*/ '../Views/User.vue'),
   },
   {
-    path: '/AddTagView',
-    name: 'AddTagView',
-    component: AddTagView
+    path: '/detailRecipe/:id',
+    component: DetailRecipe,
+    children: [
+      {
+        path: 'ingredients',
+        component: DetailRecipeIngredients,
+      },
+      {
+        path: 'description',
+        component: DetailRecipeDescription,
+      },
+      {
+        path: 'images',
+        component: DetailRecipeImages,
+      }
+    ],
   },
   {
-    path: '/SettingView',
-    name: 'SettingView',
-    component: SettingView
-  },
-]
+    path: '*',
+    component: PageNotFound,
+  }
+];
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
-})
+});
 
-
-export default router
+export default router;
