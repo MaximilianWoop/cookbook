@@ -4,6 +4,7 @@ async function createRecipe(recipe){
     request.open('POST','https://cookbook.ryotecx.de/api.php/recipe');
     request.setRequestHeader("Content-Type", "application/json");
     var recipeJson = JSON.stringify(recipe);
+    console.log(recipeJson);
     request.send(recipeJson); 
 }
 async function updateRecipe(recipe){

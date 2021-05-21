@@ -351,10 +351,11 @@ var vueModel = {
                     recipe.images = images;
                     recipe.temperature = null;
                     helper.createRecipe(recipe);
+                    
                     this.snackbar = true;
                     this.snackbarText = "Rezept gespeichert."
                     this.snackbarColor = "#2f810e"
-                    setTimeout(function() {window.location.href = "/cookbookview"},1000);
+                    // setTimeout(function() {window.location.href = "/cookbookview"},1000);
                 }   
                 else{
                     this.snackbar = true;
