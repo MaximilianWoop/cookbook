@@ -14,25 +14,25 @@ import TheFooter from '../components/TheFooter.vue';
 export default{
     data(){
         return{
-            recipes: [],
+            
         };
     },
     created(){
-        console.log(`${process.env.VUE_APP_BACKEND_URL}`);
-        fetch('https://cookbook.ryotecx.de/api.php/recipe')
-            .then((response) => response.json())
-            .then((data) => {
-                this.recipes = data;
-            }
-        );
+        this.$http.get(`${process.env.VUE_APP_BACKEND_URL}/recipe`)
+        .then((response) => {
+            response.data.forEach((recipe) => {
+                this.$store.dispatch('setManyRecipes',recipe);
+            })
+        });    
+        console.log(this.$store.state.recipes);   
     },
     computed:{
         sortedRecipe(){
             const sort = this.$route.query.sort;
             if(!sort){
-                return this.recipes;
+                return this.$store.state.recipes;
             }
-            const sorted = this.recipes;
+            const sorted = this.$store.state.recipes;
             return sorted.sort((a,b) => {
                 if(a.name < b.name){
                     return sort === 'asc' ? -1 : 1;

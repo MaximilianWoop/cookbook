@@ -6,43 +6,40 @@
                     :key="item.name"
                     :href="'/detailRecipe/'+item.recipeID">
                     <v-list-item-content>
-                        <v-card outlined>                           
-                            <v-img class="image" src="https://picsum.photos/202">
-                                <v-row>
-                                    <v-col>
-                                        <div class="name">{{item.name}}</div>  
-                                    </v-col>
-                                    <v-col>
-                                        <v-btn icon @click="addFavorite" class="heart__button">
-                                            <v-icon class="icon">{{icon}}</v-icon>
-                                        </v-btn>  
-                                    </v-col>
-                                </v-row>                               
-                            </v-img>  
-                            <!-- <div class="tag__container">
-                                <v-row>
-                                    <v-col v-if="item.tags[0] != null">
-                                        <a class="tag" v-if="item.tags != null">{{item.tags[0].name}}</a>
-                                        <a class="tag" v-else></a>
-                                    </v-col>
-                                    <v-col v-if="item.tags[1] != null">
-                                        <a class="tag" v-if="item.tags.length > 1">{{item.tags[1].name}}</a>
-                                        <a class="tag" v-else></a>
-                                    </v-col>
-                                    <v-col v-if="item.tags[2] != null">
-                                        <a class="tag" v-if="item.tags.length > 2">{{item.tags[2].name}}</a>
-                                        <a class="tag" v-else></a>
-                                    </v-col>
-                                    <v-col v-if="item.tags[3] != null">
-                                        <a class="tag" v-if="item.tags.length > 3">{{item.tags[3].name}}</a>
-                                        <a class="tag" v-else></a>
-                                    </v-col>
-                                    <v-col v-if="item.tags[4] != null">
-                                        <a class="tag" v-if="item.tags.length > 4">{{item.tags[4].name}}</a>
-                                        <a class="tag" v-else></a>
-                                    </v-col> 
-                                </v-row>
-                            </div>                                                        -->
+                        <v-card outlined> 
+                            <v-row>
+                                <v-col class="image-col">
+                                    <v-img class="image" src="https://cookbook.ryotecx.de/images/recipe/1/img.png">
+                                        <v-row>
+                                            <v-col>
+                                                <div class="name">{{item.name}}</div>  
+                                            </v-col>
+                                            <v-col>
+                                                <v-btn icon @click="addFavorite" class="heart__button">
+                                                    <v-icon class="icon">{{icon}}</v-icon>
+                                                </v-btn>  
+                                            </v-col>
+                                        </v-row>                               
+                                    </v-img> 
+                                </v-col>
+                                <v-col class="sideContainer-col">
+                                    <v-row>
+                                        <v-col>
+                                            <a class="item-duration">{{item.duration}}</a>
+                                        </v-col>                                        
+                                    </v-row>
+                                    <v-row>
+                                        <v-col class="item-description">
+                                            <Description :description="item.description"/>
+                                        </v-col>                                        
+                                    </v-row>
+                                    <v-row>
+                                        <v-col>
+                                            <TagList :tags="item.tags"/>
+                                        </v-col>
+                                    </v-row>                                                                                                        
+                                </v-col>
+                            </v-row>                                                                                                             
                         </v-card>
                     </v-list-item-content>
                 </v-list-item>
@@ -52,6 +49,10 @@
 </template>
 
 <script>
+
+import TagList from '../components/TagList.vue';
+import Description from '../components/Description.vue';
+
 export default{
     data(){
         return{
@@ -75,59 +76,65 @@ export default{
             }
             
         },
+    },    
+    components: {
+        TagList,
+        Description,
     }
 }
 </script>
 
 <style lang="scss" scoped>
-.image{
-    .row{
-        padding: 0;
-        margin: 0;
-        .col{
+.image-col{
+    max-width: 310px;
+    .image{
+        height: 286px;
+        width: 286px;
+        .row{
             padding: 0;
             margin: 0;
-            .heart__button{
-                height: 30px;
-                width: 30px;
-                // background-color: rgb(255, 255, 255);
-                opacity: 0.85;
-                float: right;
-                color:rgb(230, 0, 0);
+            .col{
+                padding: 0;
+                margin: 0;
+                .heart__button{
+                    height: 30px;
+                    width: 30px;
+                    // background-color: rgb(255, 255, 255);
+                    opacity: 0.85;
+                    float: right;
+                    color:rgb(230, 0, 0);
+                }
+                .name{
+                    background-color: rgb(255, 255, 255);
+                    opacity: 0.85;
+                    padding: 5px;    
+                    font-size: 1rem;
+                    font-weight: bold;
+                    line-height: 20px;
+                    border-bottom: 2px solid rgba(2, 76, 140, 1);
+                    border-right: 2px solid rgba(2, 76, 140, 1);
+                    border-bottom-right-radius: 15px;
+                }
             }
-            .name{
-                background-color: rgb(255, 255, 255);
-                opacity: 0.85;
-                padding: 5px;    
-                font-size: 1rem;
-                font-weight: bold;
-                line-height: 20px;
-                border-bottom: 2px solid rgba(2, 76, 140, 1);
-                border-right: 2px solid rgba(2, 76, 140, 1);
-                border-bottom-right-radius: 15px;
-            }
-        }
-    }    
+        }    
+    }
 }
-// .tag__container{
-//     .row{
-//         margin: 0;
-//         .col{
-//             padding: 1px;   
-//             flex-grow: 0;    
-//             .tag{
-//                 border: 2px solid rgba(2, 76, 140, 1);
-//                 border-radius: 15px;
-//                 // background: rgba(2, 76, 140, 1); 
-//                 color: black;
-//                 display: inline-block;
-//                 font-size: 14px;
-//                 line-height: 20px;
-//                 padding: 5px 8px;
-//                 text-decoration: none;
-//                 -webkit-font-smoothing: antialiased;
-//             } 
-//         }
-//     }
-// }
+
+
+.sideContainer-col{
+    padding: 17px;
+    display: none;
+    & .item-duration{
+        float: right; 
+        font-size:1rem;
+    }
+    & .item-description{
+        height: 150px;
+    }
+}
+@media screen and (min-width: 430px) {
+    .sideContainer-col{
+        display: inline
+    }
+}
 </style>

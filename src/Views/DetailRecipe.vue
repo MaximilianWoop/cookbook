@@ -1,13 +1,35 @@
 <template>
-    <div>
+    <div class="detailRecipe">
         <TheHeader/>
-        <h1>Detail</h1>
-        <h6>{{recipe}}</h6>
-        <router-link :to="`/detailRecipe/${$route.params.id}/ingredients`">Ingredients</router-link>
-        <router-link :to="`/detailRecipe/${$route.params.id}/description`">Description</router-link>
-        <transition name="fade">
-            <router-view></router-view>
-        </transition>        
+        <div class="detailRecipeContent">
+            <v-row>
+                <v-col>
+                    <div class="recipeName">{{recipe.name}}</div>
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col class="recipeInformationSelectorLeft" id="recipeInformationSelectorLeft">
+                    <router-link class="recipeInformationSelectorLink" :to="`/detailRecipe/${$route.params.id}/ingredients`" id="ingredientSelector">
+                        <span v-on:click="ingredientClicked">Zutaten</span>
+                    </router-link>   
+                </v-col>  
+                <v-col class="recipeInformationSelectorMiddle" id="recipeInformationSelectorMiddle">
+                    <router-link class="recipeInformationSelectorLink" :to="`/detailRecipe/${$route.params.id}/description`">
+                        <span v-on:click="descriptionClicked">Zutaten</span>
+                    </router-link>
+                </v-col>    
+                <v-col class="recipeInformationSelectorRight" id="recipeInformationSelectorRight">
+                    <router-link class="recipeInformationSelectorLink" :to="`/detailRecipe/${$route.params.id}/images`">
+                        <span v-on:click="imageClicked">Zutaten</span>
+                    </router-link>    
+                </v-col>            
+            </v-row>
+            <v-row>
+                <v-col class="recipeInformationContent">
+                    <router-view></router-view>
+                </v-col>                
+            </v-row>
+        </div>              
         <TheFooter/>
     </div>
 </template>
@@ -19,29 +41,115 @@ export default {
     data(){
         return{
             id: this.$route.params.id,
-            recipe: {},
         }
     },
     created(){
-        fetch(`https://cookbook.ryotecx.de/api.php/recipe?recipeID=${this.id}`)
-            .then((response) => response.json())
-            .then((response) => {
-                this.recipe = response;
-            }
-        );
+        this.$http.get(`${process.env.VUE_APP_BACKEND_URL}/recipe?recipeID=${this.id}`)
+        .then((response) => {
+            response.data.forEach((recipe) => {
+                this.$store.dispatch('setOneRecipe',recipe);
+            })
+        });
+    },
+    mounted(){
+        document.getElementById("ingredientSelector").click();
+    },
+    computed:{
+        recipe(){
+            return this.$store.state.recipe;
+        }
     },
     components: {
         TheHeader,
         TheFooter,
+    },
+    methods:{
+        ingredientClicked(){
+            document.getElementById("recipeInformationSelectorLeft").style.backgroundColor  = "white";
+            document.getElementById("recipeInformationSelectorMiddle").style.backgroundColor  = "rgb(230, 230, 230)";
+            document.getElementById("recipeInformationSelectorRight").style.backgroundColor  = "rgb(230, 230, 230)";
+        },
+        descriptionClicked(){
+            document.getElementById("recipeInformationSelectorLeft").style.backgroundColor  = "rgb(230, 230, 230)";
+            document.getElementById("recipeInformationSelectorMiddle").style.backgroundColor  = "white";
+            document.getElementById("recipeInformationSelectorRight").style.backgroundColor  = "rgb(230, 230, 230)";
+        },
+        imageClicked(){
+            document.getElementById("recipeInformationSelectorLeft").style.backgroundColor  = "rgb(230, 230, 230)";
+            document.getElementById("recipeInformationSelectorMiddle").style.backgroundColor  = "rgb(230, 230, 230)";
+            document.getElementById("recipeInformationSelectorRight").style.backgroundColor  = "white";
+        }
     }
 }
 </script>
 
 <style lang="scss" scoped>
-.fade-enter-active, .fade-leave-active{
-    transition: opacity .5s ease-out;
-}
-.fade-enter, .fade-leave-to{
-    opacity: 0;
+.detailRecipe{
+    min-height: 100vh;
+    & .detailRecipeContent{
+        width: 100%;
+        min-height: 87.5vh;
+        padding: 0 1rem 1rem 1rem;
+        & .row{
+            margin: 0px;
+        }
+        & .recipeName{
+            font-size: 30px;
+            font-weight: bold;
+        }
+        & .recipeInformationSelectorLeft{
+            background-color: rgb(255, 255, 255);
+            opacity: 0.85;
+            padding: 5px;    
+            font-size: 1rem;
+            font-weight: bold;
+            line-height: 20px;
+            border-top: 2px solid rgba(2, 76, 140, 1);
+            border-left: 2px solid rgba(2, 76, 140, 1);
+            border-top-right-radius: 15px;
+            border-top-left-radius: 15px;
+            text-align: center;
+            padding-top: 10px;
+        }
+        & .recipeInformationSelectorMiddle{
+            background-color: rgb(230, 230, 230);
+            opacity: 0.85;
+            padding: 5px;    
+            font-size: 1rem;
+            font-weight: bold;
+            line-height: 20px;
+            border-top: 2px solid rgba(2, 76, 140, 1);
+            border-left: 2px solid rgba(2, 76, 140, 1);
+            border-right: 2px solid rgba(2, 76, 140, 1);
+            border-top-right-radius: 15px;
+            border-top-left-radius: 15px;
+            text-align: center;
+            padding-top: 10px;
+            
+        }
+        & .recipeInformationSelectorRight{
+            background-color: rgb(230, 230, 230);
+            opacity: 0.85;
+            padding: 5px;    
+            font-size: 1rem;
+            font-weight: bold;
+            line-height: 20px;
+            border-top: 2px solid rgba(2, 76, 140, 1);
+            border-right: 2px solid rgba(2, 76, 140, 1);
+            border-top-right-radius: 15px;
+            border-top-left-radius: 15px;
+            text-align: center;
+            padding-top: 10px;
+        }
+        & .recipeInformationSelectorLink{
+            color: black;
+            text-decoration: none;
+        }
+        & .recipeInformationContent{
+            border-right: 2px solid rgba(2, 76, 140, 1);
+            border-left: 2px solid rgba(2, 76, 140, 1);
+            border-bottom: 2px solid rgba(2, 76, 140, 1);
+        }
+    }
 }
 </style>

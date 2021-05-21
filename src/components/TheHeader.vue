@@ -21,14 +21,19 @@
                     <v-list-item-content>
                         <!-- User image -->
                         <v-row>
-                            <v-col>
-                                <v-img src="https://randomuser.me/api/portraits/women/85.jpg"/>
+                            <v-col class="userInital-col">
+                                <!-- <v-img src="https://randomuser.me/api/portraits/women/85.jpg"/> -->
+                                <div class="userInitials-circle">
+                                    <div class="userInitials">
+                                        {{$store.getters.getInitials}}
+                                    </div>
+                                </div>
                             </v-col>
                         </v-row>
                         <!-- Username -->
                         <v-row class="nav-drawer-content-row">
                             <v-col class="nav-drawer-content-row-col">
-                                <v-list-item-title class="nav-drawer-content-username">Username</v-list-item-title>
+                                <v-list-item-title class="nav-drawer-content-username">{{user.name}}</v-list-item-title>
                             </v-col>
                         </v-row>
                     </v-list-item-content>
@@ -36,7 +41,7 @@
                 <!-- Menu-Points -->
                 <v-list-item :to="item.route" v-for="item in MenuPoints" :key="item.title" link :id="item.title">
                     <v-list-item-icon>
-                        <v-icon>{{item.icon}}</v-icon>
+                        <v-icon class="item-icon">{{item.icon}}</v-icon>
                     </v-list-item-icon>
                     <v-list-item-content>
                         <router-link style="color:white;text-decoration: none;font-size:15px" :to="item.route">{{item.title}}</router-link>
@@ -67,7 +72,11 @@ export default {
         }
     },
     async mounted(){},
-    computed:{},
+    computed:{
+        user(){
+            return this.$store.state.user;
+        }
+    },
     methods: {},
     props:[],
     components: {
@@ -77,6 +86,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.userInital-col{
+    text-align: center;
+    & .userInitials-circle{
+        height: 125px;
+        width: 125px;
+        background-color: rgb(221, 221, 221);
+        border-radius: 50%;
+        display: inline-block;
+        & .userInitials{
+            font-size: 50px;
+            color: black;
+            position: absolute;
+            top: 22%;
+            left: 26%;
+        }
+    }
+}
+
 .headerTitle{
     font-size: 1.3rem;
 }
@@ -88,6 +115,7 @@ export default {
     margin-bottom: 10px;
     .nav-drawer-content-row-col{
         padding-top:0;
+        text-align: center;
         & .v-list-item__title{
             font-size: 1rem;
             font-weight: bold;     
@@ -101,9 +129,9 @@ export default {
 
 .v-list-item__icon{
     margin-right: 5px;
-    & .v-icon{
-        color: white;
-    }
+}
+.item-icon{
+    color: white !important;
 }
 .v-navigation-drawer {
     max-width: 200px;

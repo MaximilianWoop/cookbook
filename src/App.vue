@@ -19,9 +19,9 @@ export default {}
     html, body{
       padding: 0;
       margin: 0;
+      min-height: 100vh;
       font-family: Arial, Helvetica, sans-serif;
     }
-
     .v-responsive__sizer{
       flex: 0 !important;
     }
