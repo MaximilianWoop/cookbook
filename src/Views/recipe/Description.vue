@@ -1,6 +1,10 @@
 <template>
     <div>
-        {{description}}
+        <v-textarea 
+            auto-grow
+            clearable
+            outlined
+            :value="this.$store.state.recipe.description"/>
     </div>
 </template>
 

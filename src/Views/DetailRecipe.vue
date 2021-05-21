@@ -6,6 +6,11 @@
                 <v-col>
                     <div class="recipeName">{{recipe.name}}</div>
                 </v-col>
+                <v-col>
+                    <v-btn class="button" @click="deleteItem" icon>
+                        <v-icon>mdi-delete</v-icon>
+                    </v-btn>
+                </v-col>
             </v-row>
             <v-row>
                 <v-col class="recipeInformationSelectorLeft" id="recipeInformationSelectorLeft">
@@ -15,12 +20,12 @@
                 </v-col>  
                 <v-col class="recipeInformationSelectorMiddle" id="recipeInformationSelectorMiddle">
                     <router-link class="recipeInformationSelectorLink" :to="`/detailRecipe/${$route.params.id}/description`">
-                        <span v-on:click="descriptionClicked">Zutaten</span>
+                        <span v-on:click="descriptionClicked">Zubereitung</span>
                     </router-link>
                 </v-col>    
                 <v-col class="recipeInformationSelectorRight" id="recipeInformationSelectorRight">
                     <router-link class="recipeInformationSelectorLink" :to="`/detailRecipe/${$route.params.id}/images`">
-                        <span v-on:click="imageClicked">Zutaten</span>
+                        <span v-on:click="imageClicked">Bilder</span>
                     </router-link>    
                 </v-col>            
             </v-row>
@@ -37,6 +42,9 @@
 <script>
 import TheHeader from '../components/TheHeader.vue';
 import TheFooter from '../components/TheFooter.vue';
+
+import recipeCURLController from '../Helper/Curl/RecipeController.js'
+
 export default {
     data(){
         return{
@@ -78,6 +86,10 @@ export default {
             document.getElementById("recipeInformationSelectorLeft").style.backgroundColor  = "rgb(230, 230, 230)";
             document.getElementById("recipeInformationSelectorMiddle").style.backgroundColor  = "rgb(230, 230, 230)";
             document.getElementById("recipeInformationSelectorRight").style.backgroundColor  = "white";
+        },
+        deleteItem(){
+            recipeCURLController.deleteRecipe(this.$store.state.recipe.recipeID);
+            setTimeout(function() {window.location.href = "/home?sort=asc"},500);
         }
     }
 }
@@ -90,6 +102,9 @@ export default {
         width: 100%;
         min-height: 87.5vh;
         padding: 0 1rem 1rem 1rem;
+        & .button{
+            float: right;
+        }
         & .row{
             margin: 0px;
         }

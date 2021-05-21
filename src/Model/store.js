@@ -23,6 +23,12 @@ export default new Vuex.Store({
         setOneRecipe(state, recipe){
             state.recipe = recipe;
         },
+        setManyIngredients(state, ingredient){
+            state.ingredients.push(ingredient);
+        },
+        setManyTags(state, tag){
+            state.tags.push(tag);
+        },
     },
     actions:{
         setManyRecipes: ({commit, state}, recipe) => {
@@ -32,6 +38,14 @@ export default new Vuex.Store({
         setOneRecipe: ({commit, state}, recipe) => {
             commit('setOneRecipe',recipe);
             return state.recipe;
+        },
+        setManyIngredients: ({commit, state}, ingredient) => {
+            commit('setManyIngredients',ingredient);
+            return state.ingredient;
+        },
+        setManyTags: ({commit, state}, tag) => {
+            commit('setManyTags',tag);
+            return state.tag;
         },
     },
     getters:{

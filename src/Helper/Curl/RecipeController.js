@@ -3,7 +3,6 @@ async function curlFunction(url, method, body){
     const settings = {
         method: method,
         headers: {
-            Accept: 'application/json',
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(body),
@@ -11,9 +10,11 @@ async function curlFunction(url, method, body){
     try{
         const response = await fetch(url, settings);
         if(response.status == 200){
+            console.log(response.status);
             return true;
         }    
         else{
+            console.log(response.status);
             return false;
         }   
     }
@@ -23,23 +24,37 @@ async function curlFunction(url, method, body){
     }
 }
 //CRUD Funktionen für Recipe
+// async function createRecipe(recipe){
+//     const url = "https://cookbook.ryotecx.de/api.php/recipe";
+//     const method = "POST";
+//     const body = JSON.stringify(recipe);
+//     return curlFunction(url,method,body);
+// }
 async function createRecipe(recipe){
-    const url = "https://cookbook.ryotecx.de/api.php/recipe";
-    const method = "POST";
-    const body = JSON.stringify(recipe);
-    return curlFunction(url,method,body);
+    var request = new XMLHttpRequest();
+    request.open('POST','https://cookbook.ryotecx.de/api.php/recipe');
+    request.setRequestHeader("Content-Type", "application/json");
+    var recipeJson = JSON.stringify(recipe);
+    request.send(recipeJson); 
 }
 async function updateRecipe(recipe){
     const url = "https://cookbook.ryotecx.de/api.php/recipe";
     const method = "PUT";
-    const body = JSON.stringify(recipe);;
+    const body = JSON.stringify(recipe);
     return curlFunction(url,method,body);
 }
+// async function deleteRecipe(id){
+//     const url = "https://cookbook.ryotecx.de/api.php/recipe?recipeID=" + id;
+//     const method = "DELETE";
+//     const body = "";
+//     return curlFunction(url,method,body);
+// }
 async function deleteRecipe(id){
-    const url = "https://cookbook.ryotecx.de/api.php/recipe?recipeID=" + id;
-    const method = "DELETE";
-    const body = "";
-    return curlFunction(url,method,body);
+    var request = new XMLHttpRequest();
+    request.open('DELETE','https://cookbook.ryotecx.de/api.php/recipe',true);
+    request.setRequestHeader("Content-Type", "application/json");
+    var recipeJson = "{\"recipeID\":" + id + "}";
+    request.send(recipeJson); 
 }
 
 //Funktionen Exportieren
@@ -48,7 +63,6 @@ var curlRecipeController = {
     updateRecipe,
     deleteRecipe,
     curlFunction,
-    test,
 }
 export default curlRecipeController;
 

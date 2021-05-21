@@ -27,6 +27,6 @@ export default {
 
 <style lang="scss" scoped>
     .description{
-        background-color: red;
+        
     }   
 </style>

@@ -2,7 +2,7 @@
     <div>        
         <div v-for="item in tags" 
             :key="item.name">
-            <div class="tag__container">
+            <div class="tag__container" v-if="item.name != null">
                 <a class="tag">{{item.name}}</a>
             </div>
         </div>

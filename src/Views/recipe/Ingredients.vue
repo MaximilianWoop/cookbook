@@ -1,6 +1,6 @@
 <template>
     <div>
-        <IngredientList :ingredients="ingredients"/>    
+        <IngredientList :ingredients="this.$store.state.recipe.ingredients"/>    
     </div>
 </template>
 
@@ -11,13 +11,6 @@ export default {
     data(){
         return{
             id: this.$route.params.id,
-            ingredients:[
-                {name: "Tomate",measurement:"ml",portion:999},
-                {name: "Mehl",measurement:"L",portion:9999},
-                {name: "Vanillepulver",measurement:"TL",portion:100},
-                {name: "Tomatenmark",measurement:"EL",portion:10},
-                {name: "Schokoladenkovertüre",measurement:"STK",portion:10},
-            ]
         }
     },
     created(){

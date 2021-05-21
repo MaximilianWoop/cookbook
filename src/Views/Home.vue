@@ -17,14 +17,14 @@ export default{
             
         };
     },
-    created(){
+    created(){ 
+        this.$store.state.recipes = [];         
         this.$http.get(`${process.env.VUE_APP_BACKEND_URL}/recipe`)
         .then((response) => {
             response.data.forEach((recipe) => {
                 this.$store.dispatch('setManyRecipes',recipe);
             })
-        });    
-        console.log(this.$store.state.recipes);   
+        });  
     },
     computed:{
         sortedRecipe(){
