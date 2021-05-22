@@ -87,6 +87,9 @@ export default{
     data(){
         return{
             icon: `mdi-heart-outline`,
+            name: '',
+            tag: '',
+            duration: '',
         };
     },
     // Props als Object dem ein datentype mitgegeben wird (Zusätzliche Werte wie default-Wert oder required-Wert möglich)
@@ -96,6 +99,20 @@ export default{
             required: true,
         },
     },
+    computed:{
+        filtered(){
+            if(this.name != ""){
+                return this.filterByName();
+            }
+            if(this.tag != ""){
+                return this.filterByTag();
+            }
+            if(this.duration != ""){
+                return this.filterByDuration();
+            }
+            return this.$store.state.recipes
+        }
+    },
     methods:{
         addFavorite(){
             if(this.icon == `mdi-heart`){
@@ -103,9 +120,17 @@ export default{
             }
             else{
                 this.icon = `mdi-heart`;
-            }
-            
+            }            
         },
+        filterByName(){
+            return this.$store.state.recipes.filter(recipe => !recipe.name.toLowerCase().indexOf(this.name.toLowerCase()));
+        },
+        filterByTag(){
+            return this.$store.state.recipes.filter(recipe => recipe.tags.some(tag => tag.name.toLowerCase().includes(this.tag.toLowerCase())));            
+        },
+        filterByDuration(){
+            return this.$store.state.recipes.filter(recipe => !recipe.duration.indexOf(this.duration));
+        }
     },    
     components: {
         TagList,
