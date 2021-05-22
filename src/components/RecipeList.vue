@@ -1,5 +1,16 @@
 <template>
     <div class="cookbook-list">
+        <v-row no-gutters>
+            <v-col>
+                <v-text-field id="cookbook-filter-by-name" label="Name" @input="filterByName" v-model="name"/>
+            </v-col>
+            <v-col>
+                <v-text-field id="cookbook-filter-by-tag" label="Tags" @input="filterByTag" v-model="tag"/>
+            </v-col>
+            <v-col>
+                <v-text-field id="cookbook-filter-by-duration" label="Dauer" @input="filterByDuration" v-model="duration"/>
+            </v-col>
+        </v-row>
         <v-list three-line>
             <template v-for="item in recipes">
                 <v-list-item 
