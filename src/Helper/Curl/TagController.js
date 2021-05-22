@@ -22,16 +22,23 @@ async function curlFunction(url, method, body){
     }
 }
 //CRUD Funktionen für Tag
+// async function createTag(tag){
+//     const url = "https://cookbook.ryotecx.de/api.php/tag";
+//     const method = "POST";
+//     const body = JSON.stringify(tag);
+//     return curlFunction(url,method,body);
+// }
 async function createTag(tag){
-    const url = "https://cookbook.ryotecx.de/api.php/tag";
-    const method = "POST";
-    const body = JSON.stringify(tag);
-    return curlFunction(url,method,body);
+    var request = new XMLHttpRequest();
+    request.open('POST','https://cookbook.ryotecx.de/api.php/tag');
+    request.setRequestHeader("Content-Type", "application/json");
+    var tagJson = JSON.stringify(tag);
+    request.send(tagJson); 
 }
 async function updateTag(tag){
     const url = "https://cookbook.ryotecx.de/api.php/tag";
     const method = "UPDATE";
-    const body = JSON.stringify(tag);;
+    const body = JSON.stringify(tag);
     return curlFunction(url,method,body);
 }
 async function deleteTag(id){

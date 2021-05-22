@@ -217,6 +217,7 @@ export default {
                 recipe.tags = this.createTagObjects();
                 recipe.images = this.createImageObjects();
                 recipeCURLController.createRecipe(recipe);
+                setTimeout(function() {window.location.href = "/home?sort=asc"},500);
             }catch(exception){
                 console.log(exception.message);
             }
@@ -284,6 +285,7 @@ export default {
             this.portionOfSelectedIngredient = null;
             this.ingredients = [];
             this.images = [];
+            setTimeout(function() {window.location.href = "/home?sort=asc"},500);
         },
         addTagToList(){            
             if(this.selectTag != null && this.selectTag != ''){

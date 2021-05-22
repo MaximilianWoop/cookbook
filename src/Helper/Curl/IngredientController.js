@@ -22,16 +22,23 @@ async function curlFunction(url, method, body){
     }
 }
 //CRUD Funktionen für Ingredient
+// async function createIngredient(ingredient){
+//     const url = "https://cookbook.ryotecx.de/api.php/ingredient";
+//     const method = "POST";
+//     const body = JSON.stringify(ingredient);
+//     return curlFunction(url,method,body);
+// }
 async function createIngredient(ingredient){
-    const url = "https://cookbook.ryotecx.de/api.php/ingredient";
-    const method = "POST";
-    const body = JSON.stringify(ingredient);
-    return curlFunction(url,method,body);
+    var request = new XMLHttpRequest();
+    request.open('POST','https://cookbook.ryotecx.de/api.php/ingredient');
+    request.setRequestHeader("Content-Type", "application/json");
+    var ingredientJson = JSON.stringify(ingredient);
+    request.send(ingredientJson); 
 }
 async function updateIngredient(ingredient){
     const url = "https://cookbook.ryotecx.de/api.php/ingredient";
     const method = "UPDATE";
-    const body = JSON.stringify(ingredient);;
+    const body = JSON.stringify(ingredient);
     return curlFunction(url,method,body);
 }
 async function deleteIngredient(id){

@@ -7,7 +7,7 @@
                     :href="'/detailRecipe/'+item.recipeID">
                     <v-list-item-content>
                         <v-card outlined> 
-                            <v-row>
+                            <v-row class="image-row">
                                 <v-col class="image-col" v-if="item.images.length != 0">
                                     <v-img class="image" :src="`https://cookbook.ryotecx.de/` + item.images[0].thumbnailPath">
                                     <!-- <v-img class="image" :src="`${process.env.VUE_APP_BACKEND_IMAGE_URL}` + item.images[0].thumbnailPath"> -->
@@ -104,60 +104,64 @@ export default{
 </script>
 
 <style lang="scss" scoped>
-.image-col{
-    max-width: 310px;
-    .notImageFound{
-        width: 285px;
-        height: 285px;
-        background: black;
-        text-align: center;            
-        & .heart__button{
-            height: 30px;
-            width: 30px;
-            // background-color: rgb(255, 255, 255);
-            opacity: 0.85;
-            float: right;
-            color:rgb(230, 0, 0);
-        }
-        & .noImageFoundText{
-            color: white;
-            font-size: 25px;
-            font-weight: bolder;
-            margin-top: 70px;
-        }
-    }    
-    .image{
-        height: 286px;
-        width: 286px;
-        .row{
-            padding: 0;
-            margin: 0;
-            .col{
-                padding: 0;
-                margin: 0;
-                .heart__button{
-                    height: 30px;
-                    width: 30px;
-                    // background-color: rgb(255, 255, 255);
-                    opacity: 0.85;
-                    float: right;
-                    color:rgb(230, 0, 0);
-                }
-                .name{
-                    background-color: rgb(255, 255, 255);
-                    opacity: 0.85;
-                    padding: 5px;    
-                    font-size: 1rem;
-                    font-weight: bold;
-                    line-height: 20px;
-                    border-bottom: 2px solid rgba(2, 76, 140, 1);
-                    border-right: 2px solid rgba(2, 76, 140, 1);
-                    border-bottom-right-radius: 15px;
-                }
+.image-row{
+    margin: 0;
+    .image-col{
+        max-width: 310px;
+        .notImageFound{
+            width: 285px;
+            height: 285px;
+            background: black;
+            text-align: center;            
+            & .heart__button{
+                height: 30px;
+                width: 30px;
+                // background-color: rgb(255, 255, 255);
+                opacity: 0.85;
+                float: right;
+                color:rgb(230, 0, 0);
+            }
+            & .noImageFoundText{
+                color: white;
+                font-size: 25px;
+                font-weight: bolder;
+                margin-top: 70px;
             }
         }    
+        .image{
+            height: 286px;
+            width: 286px;
+            .row{
+                padding: 0;
+                margin: 0;
+                .col{
+                    padding: 0;
+                    margin: 0;
+                    .heart__button{
+                        height: 30px;
+                        width: 30px;
+                        // background-color: rgb(255, 255, 255);
+                        opacity: 0.85;
+                        float: right;
+                        color:rgb(230, 0, 0);
+                    }
+                    .name{
+                        background-color: rgb(255, 255, 255);
+                        opacity: 0.85;
+                        padding: 5px;    
+                        font-size: 1rem;
+                        font-weight: bold;
+                        line-height: 20px;
+                        border-bottom: 2px solid rgba(2, 76, 140, 1);
+                        border-right: 2px solid rgba(2, 76, 140, 1);
+                        border-bottom-right-radius: 15px;
+                    }
+                }
+            }    
+        }
     }
 }
+
 
 
 .sideContainer-col{
