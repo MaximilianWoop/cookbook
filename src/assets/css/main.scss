@@ -1,23 +1,9 @@
-
-body{
-    font-family:Arial;
-    background: whitesmoke;
-    height: 100vh;
-    width: 100vw;
+body {
+    background-color: yellow;
 }
 
-*,
-*::before,
-*::after{
-    box-sizing: border-box;
+@media only screen and (max-width: 600px) {
+    body {
+        background-color: lightblue;
+    }
 }
-
-:root{
-    --cb-white: whitesmoke;
-    --cb-blue: rgba(2, 76, 140, 1);
-    --cb-error: rgba(145, 10, 10);
-    --cb-warn: rgba(221, 218, 9);
-    --cb-success: rgba(47, 129, 14);
-}
-
-
