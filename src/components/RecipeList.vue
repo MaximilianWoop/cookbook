@@ -12,7 +12,7 @@
             </v-col>
         </v-row>
         <v-list three-line>
-            <template v-for="item in recipes">
+            <template v-for="item in filtered">
                 <v-list-item 
                     :key="item.name"
                     :href="'/detailRecipe/'+item.recipeID">
