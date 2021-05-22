@@ -53,16 +53,41 @@ export default {
         return{
             ingredientName: '',
             ingredientMeasurement: '',
+            check: false,
         }
+    },
+    created(){
+        this.$store.state.ingredients = [];
+        this.$http.get(`${process.env.VUE_APP_BACKEND_URL}/ingredient`)
+        .then((response) => {
+            response.data.forEach((ingredient) => {
+                this.$store.dispatch('setManyIngredients',ingredient);
+            })
+        });
     },
     methods:{
         save(){
             var ingredient = new Object;
             ingredient.name = this.ingredientName;
             ingredient.measurement = this.ingredientMeasurement;
-
-            ingredientCURLController.createIngredient(ingredient);
-            setTimeout(function() {window.location.href = "/home?sort=asc"},500);
+            if(this.ingredientName != '' && this.ingredientMeasurement != ''){
+                this.$store.state.ingredients.forEach((item) => {
+                    if(item.name.toLowerCase() === ingredient.name.toLowerCase()){
+                        this.check = true;
+                        return;
+                    }
+                });
+                if(this.check == false){
+                    ingredientCURLController.createIngredient(ingredient);
+                    setTimeout(function() {window.location.href = "/home?sort=asc"},500);
+                }
+                else{
+                    console.log("Zutat ist bereits vorhanden");
+                }
+            }
+            else{
+                console.log("Felder müssen gefüllt sein");
+            }
         },
         cancel(){
             this.ingredientName = '',

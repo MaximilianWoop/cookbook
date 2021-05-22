@@ -44,15 +44,41 @@ export default {
     data(){
         return{
             tagName: '',
+            check: false,
         }
+    },
+    created(){
+        this.$store.state.tags = [],
+        this.$http.get(`${process.env.VUE_APP_BACKEND_URL}/tag`)
+        .then((response) => {
+            response.data.forEach((tag) => {
+                this.$store.dispatch('setManyTags',tag);
+            })
+        });
     },
     methods:{
         save(){
             var tag = new Object;
             tag.name = this.tagName;
 
-            tagCURLController.createTag(tag);
-            setTimeout(function() {window.location.href = "/home?sort=asc"},500);
+            if(this.tagName != ''){
+                this.$store.state.tags.forEach((item) => {
+                    if(item.name.toLowerCase() === tag.name.toLowerCase()){
+                        this.check = true;
+                        return;
+                    }
+                });
+                if(this.check == false){
+                    tagCURLController.createTag(tag);
+                    setTimeout(function() {window.location.href = "/home?sort=asc"},500);
+                }
+                else{
+                    console.log("Tag ist bereits vorhanden");
+                }
+            }
+            else{
+                console.log("Felder müssen gefüllt sein");
+            }
         },
         cancel(){
             this.tagName = '',
