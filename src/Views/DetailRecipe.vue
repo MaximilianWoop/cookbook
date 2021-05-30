@@ -2,13 +2,18 @@
     <div class="detailRecipe">
         <TheHeader/>
         <div class="detailRecipeContent">
-            <v-row>
-                <v-col>
-                    <div class="recipeName">{{recipe.name}}</div>
+            <v-row class="recipeName-row">
+                <v-col cols="10">
+                    <p class="recipeName">{{recipe.name}}</p>
                 </v-col>
-                <v-col>
+                <v-col cols="1">
                     <v-btn class="button" @click="deleteItem" icon>
                         <v-icon>mdi-delete</v-icon>
+                    </v-btn>
+                </v-col>
+                <v-col cols="1">
+                    <v-btn class="button"  icon>
+                        <v-icon>mdi-pencil</v-icon>
                     </v-btn>
                 </v-col>
             </v-row>
@@ -102,16 +107,23 @@ export default {
         width: 100%;
         min-height: 87.5vh;
         padding: 0 1rem 1rem 1rem;
+        & .recipeName-row{
+            & .col{
+                padding-left: 0;
+                padding-right: 0;
+            }
+            & .recipeName{
+                font-size: 30px;
+                font-weight: bold;
+                word-wrap: break-word;
+            }
+        }
         & .button{
             float: right;
         }
         & .row{
             margin: 0px;
-        }
-        & .recipeName{
-            font-size: 30px;
-            font-weight: bold;
-        }
+        }        
         & .recipeInformationSelectorLeft{
             background-color: rgb(255, 255, 255);
             opacity: 0.85;
