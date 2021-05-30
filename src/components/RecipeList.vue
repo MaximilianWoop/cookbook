@@ -20,7 +20,7 @@
                         <v-card outlined> 
                             <v-row class="image-row">
                                 <v-col class="image-col" v-if="item.images.length != 0">
-                                    <v-img class="image" :src="`https://cookbook.ryotecx.de/` + item.images[0].thumbnailPath">
+                                    <v-img class="image" :src="`https://cookbook.ryotecx.de/master/` + item.images[0].thumbnailPath">
                                     <!-- <v-img class="image" :src="`${process.env.VUE_APP_BACKEND_IMAGE_URL}` + item.images[0].thumbnailPath"> -->
                                         <v-row>
                                             <v-col>
