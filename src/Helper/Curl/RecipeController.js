@@ -32,7 +32,7 @@ async function curlFunction(url, method, body){
 // }
 async function createRecipe(recipe){
     var request = new XMLHttpRequest();
-    request.open('POST','https://cookbook.ryotecx.de/api.php/recipe');
+    request.open('POST','https://cookbook.ryotecx.de/master/api.php/recipe');
     request.setRequestHeader("Content-Type", "application/json");
     var recipeJson = JSON.stringify(recipe);
     request.send(recipeJson); 
@@ -45,7 +45,7 @@ async function createRecipe(recipe){
 // }
 async function updateRecipe(recipe){
     var request = new XMLHttpRequest();
-    request.open('PUT','https://cookbook.ryotecx.de/api.php/recipe');
+    request.open('PUT','https://cookbook.ryotecx.de/master/api.php/recipe');
     request.setRequestHeader("Content-Type", "application/json");
     var recipeJson = JSON.stringify(recipe);
     request.send(recipeJson); 
@@ -58,7 +58,7 @@ async function updateRecipe(recipe){
 // }
 async function deleteRecipe(id){
     var request = new XMLHttpRequest();
-    request.open('DELETE','https://cookbook.ryotecx.de/api.php/recipe',true);
+    request.open('DELETE','https://cookbook.ryotecx.de/master/api.php/recipe',true);
     request.setRequestHeader("Content-Type", "application/json");
     var recipeJson = "{\"recipeID\":" + id + "}";
     request.send(recipeJson); 
