@@ -12,7 +12,7 @@
                     </v-btn>
                 </v-col>
                 <v-col cols="1">
-                    <v-btn class="button"  icon>
+                    <v-btn class="button" @click="editItem" icon>
                         <v-icon>mdi-pencil</v-icon>
                     </v-btn>
                 </v-col>
@@ -95,7 +95,10 @@ export default {
         deleteItem(){
             recipeCURLController.deleteRecipe(this.$store.state.recipe.recipeID);
             setTimeout(function() {window.location.href = "/home?sort=asc"},500);
-        }
+        },
+        editItem(){
+            window.location.href = "/editRecipe/" + this.$store.state.recipe.recipeID;
+        },
     }
 }
 </script>

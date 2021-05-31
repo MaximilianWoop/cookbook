@@ -26,6 +26,10 @@ const routes = [
     component: () => import(/*webpackChunkName: "addRecipe"*/ '../Views/AddRecipe.vue'),
   },
   {
+    path: '/editRecipe/:id',
+    component: () => import(/*webpackChunkName: "addRecipe"*/ '../Views/EditRecipe.vue'),
+  },
+  {
     path: '/addIngredient',
     component: () => import(/*webpackChunkName: "AddIngredient"*/ '../Views/AddIngredient.vue'),
   },

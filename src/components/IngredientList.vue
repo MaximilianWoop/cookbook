@@ -6,7 +6,7 @@
                 <v-list-item v-for="(item, i) in ingredients" :key="i">
                     <v-list-item-content>
                         <v-row style="font-size: 15px;">
-                            <v-col cols="7">
+                            <v-col cols="7" class="ingredientName">
                                 <div>{{item.name}}</div>
                             </v-col>
                             <v-col cols="2">
@@ -39,6 +39,9 @@ export default {
     & .v-item-group{
         & .v-list-item{
             padding: 0px;
+            & .ingredientName{
+                text-align: left;
+            }
         }
     }
 }
