@@ -258,6 +258,8 @@ export default {
         save(){
             try{
                 var recipe = new Object;
+                var id = this.$route.params.id;
+                recipe.recipeID = this.$route.params.id;
                 recipe.name = this.recipeName;
                 recipe.duration = this.recipeDuration;
                 recipe.description = this.recipeDescription;
@@ -265,15 +267,15 @@ export default {
                 recipe.ingredients = this.createIngredientObjects();
                 recipe.tags = this.createTagObjects();
                 recipe.images = this.createImageObjects();
-                console.log(recipe);
                 recipeCURLController.updateRecipe(recipe);
-                setTimeout(function() {window.location.href = "/detailRecipe/"+ this.$store.state.recipe.recipeID +"/ingredients";},500);
+                setTimeout(function() {window.location.href = "/detailRecipe/"+ id +"/ingredients";},500);
             }catch(exception){
                 console.log(exception.message);
             }
         },
         cancel(){
-            setTimeout(function() {window.location.href = "/detailRecipe/"+ this.$store.state.recipe.recipeID +"/ingredients";},500);
+            var id = this.$route.params.id;
+            setTimeout(function() {window.location.href = "/detailRecipe/" + id +"/ingredients";},500);
         },
         createIngredientObjects(){
             var tempIngredients = [];

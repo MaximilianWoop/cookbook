@@ -48,6 +48,7 @@ async function updateRecipe(recipe){
     request.open('PUT','https://cookbook.ryotecx.de/master/api.php/recipe');
     request.setRequestHeader("Content-Type", "application/json");
     var recipeJson = JSON.stringify(recipe);
+    console.log(recipeJson);
     request.send(recipeJson); 
 }
 // async function deleteRecipe(id){
